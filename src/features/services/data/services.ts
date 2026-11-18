@@ -1,7 +1,7 @@
 import type { ProcessStep, Service } from "@/types";
 
 /**
- * Services offered by Nigat Motors (Nigat Fanawi Trading PLC).
+ * Services offered by NF Car Importer (Nigat Fanawi Trading PLC).
  * `SERVICES` is the English (en) data rendered by the site; `SERVICES_AM`
  * holds the matching Amharic (am) version with the same slugs and images.
  */
@@ -27,7 +27,8 @@ export const SERVICES: Service[] = [
     slug: "after-sales-support",
     title: "After-Sales Support",
     image: "/images/service-maintenance.jpg",
-    excerpt: "Warranty and maintenance garage services to keep your vehicle running well after purchase.",
+    excerpt:
+      "Warranty and maintenance garage services to keep your vehicle running well after purchase.",
     overview: [
       "Our support continues after you drive away. We provide warranty service and maintenance garage services to keep your vehicle safe, reliable and running well.",
       "Get in touch to discuss your vehicle, its warranty and what it needs next — we will explain the work clearly before anything begins.",

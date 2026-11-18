@@ -5,7 +5,8 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
   title: "Contact",
-  description: "Get in touch with Nigat Motors about electric and hybrid vehicles, after-sales support or any other enquiry.",
+  description:
+    "Get in touch with NF Car Importer about electric and hybrid vehicles, after-sales support or any other enquiry.",
   path: ROUTES.contact,
 });
 

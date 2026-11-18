@@ -3,7 +3,7 @@ import type { FaqGroup } from "@/types";
 /**
  * PLACEHOLDER CONTENT — answers describe how to use this website and the
  * enquiry process only. Confirm policies (pricing, financing, warranties,
- * opening hours) with Nigat Motors before adding them (README → "Content to confirm").
+ * opening hours) with NF Car Importer before adding them (README → "Content to confirm").
  */
 export const FAQ_GROUPS: FaqGroup[] = [
   {
@@ -45,7 +45,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     title: "Getting in touch",
     items: [
       {
-        question: "What is the best way to contact Nigat Motors?",
+        question: "What is the best way to contact NF Car Importer?",
         answer:
           "Use the enquiry form on our contact page, call us, or send an email. Including your vehicle details or what you are looking for helps us respond faster.",
       },
@@ -59,4 +59,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
 ];
 
 /** A short selection used in the home page FAQ preview. */
-export const FEATURED_FAQS = FAQ_GROUPS.flatMap((group) => group.items).slice(0, 5);
+export const FEATURED_FAQS = FAQ_GROUPS.flatMap((group) => group.items).slice(
+  0,
+  5,
+);

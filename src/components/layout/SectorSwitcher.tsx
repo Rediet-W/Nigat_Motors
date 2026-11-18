@@ -53,7 +53,9 @@ export function SectorSwitcher() {
                 aria-current={current ? "page" : undefined}
                 className="group/item flex flex-col gap-3 border-l border-line-inverse px-6 py-2 transition-colors duration-500 hover:border-accent aria-[current=page]:border-accent"
               >
-                <span className="type-number text-sm text-accent">{formatIndex(index)}</span>
+                <span className="type-number text-sm text-accent ml-2">
+                  {formatIndex(index)}
+                </span>
                 <span className="type-h4 flex items-start justify-between gap-3 text-paper">
                   {sector.name}
                   {!current && (
@@ -63,8 +65,12 @@ export function SectorSwitcher() {
                     />
                   )}
                 </span>
-                <span className="text-sm leading-relaxed text-silver">{sector.description}</span>
-                {current && <span className="type-eyebrow text-accent">You are here</span>}
+                <span className="text-sm leading-relaxed text-silver">
+                  {sector.description}
+                </span>
+                {current && (
+                  <span className="type-eyebrow text-accent">You are here</span>
+                )}
               </a>
             );
           })}

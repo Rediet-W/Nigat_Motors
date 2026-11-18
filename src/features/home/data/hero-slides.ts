@@ -3,7 +3,7 @@
  * calls to action stay fixed while the backdrop rotates.
  *
  * Video: Mixkit #52427 (Mixkit Stock Video Free License). Images: Unsplash.
- * PLACEHOLDER: replace with Nigat Motors' own footage when available.
+ * PLACEHOLDER: replace with NF Car Importer' own footage when available.
  */
 export interface HeroSlide {
   label: string;
@@ -13,7 +13,11 @@ export interface HeroSlide {
 }
 
 export const HERO_SLIDES: HeroSlide[] = [
-  { label: "On the road", image: "/images/hero-home.jpg", video: "/videos/hero-drive.mp4" },
+  {
+    label: "On the road",
+    image: "/images/hero-home.jpg",
+    video: "/videos/hero-drive.mp4",
+  },
   { label: "The range", image: "/images/hero-vehicles.jpg" },
   { label: "Servicing", image: "/images/hero-services.jpg" },
   { label: "Every journey", image: "/images/hero-about.jpg" },

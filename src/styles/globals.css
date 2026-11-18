@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ==========================================================================
- * NIGAT MOTORS — DESIGN SYSTEM
+ * NF Car Importer — DESIGN SYSTEM
  * --------------------------------------------------------------------------
  * Palette   Rich black / deep charcoal / warm white / metallic silver,
  *           with a single "Nigat Copper" accent.
@@ -433,7 +433,6 @@
     transform: scale(1);
     transition: transform var(--kenburns-duration, 8s) linear;
   }
-
 
   @media (prefers-reduced-motion: reduce) {
     .reveal,

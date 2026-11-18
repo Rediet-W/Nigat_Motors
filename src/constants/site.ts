@@ -1,5 +1,5 @@
 /**
- * Nigat Motors — company information.
+ * NF Car Importer — company information.
  *
  * Verified company details. `SITE` / `CONTACT` / `SOCIAL_LINKS` are the
  * English (en) values rendered by the site; `SITE_AM` / `CONTACT_AM` hold the
@@ -7,14 +7,14 @@
  */
 
 export const SITE = {
-  name: "Nigat Motors",
+  name: "NF Car Importer",
   shortName: "Nigat",
   /** Official registered organization name. */
   legalName: "Nigat Fanawi Trading PLC",
   industry: "Construction",
   established: 2018,
   description:
-    "Nigat Motors (Nigat Fanawi Trading PLC) — electric and hybrid vehicles with after-sales warranty and maintenance garage support in Addis Ababa. Explore our vehicles and services, or get in touch with our team.",
+    "NF Car Importer (Nigat Fanawi Trading PLC) — electric and hybrid vehicles with after-sales warranty and maintenance garage support in Addis Ababa. Explore our vehicles and services, or get in touch with our team.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 } as const;
 
@@ -57,8 +57,19 @@ export interface SocialLink {
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: "TikTok", labelAm: "ቲክቶክ", href: "https://www.tiktok.com/@nigat.fanawi" },
-  { label: "LinkedIn", labelAm: "ሊንክድኢን", href: "https://www.linkedin.com/company/nigatfanawi" },
-  { label: "Facebook", labelAm: "ፌስቡክ", href: "https://web.facebook.com/profile.php?id=61596065924984" },
+  {
+    label: "TikTok",
+    labelAm: "ቲክቶክ",
+    href: "https://www.tiktok.com/@nigat.fanawi",
+  },
+  {
+    label: "LinkedIn",
+    labelAm: "ሊንክድኢን",
+    href: "https://www.linkedin.com/company/nigatfanawi",
+  },
+  {
+    label: "Facebook",
+    labelAm: "ፌስቡክ",
+    href: "https://web.facebook.com/profile.php?id=61596065924984",
+  },
 ];
-

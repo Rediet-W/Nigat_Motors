@@ -27,11 +27,13 @@ export function PrinciplesBand({ index }: PrinciplesBandProps) {
         <div className="max-w-[56rem]">
           <Reveal>
             <Eyebrow index={index} inverse className="mb-8">
-              Why Nigat Motors
+              Why NF Car Importer
             </Eyebrow>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="type-display text-balance">A better way to own a vehicle.</h2>
+            <h2 className="type-display text-balance">
+              A better way to own a vehicle.
+            </h2>
           </Reveal>
         </div>
 
@@ -43,9 +45,13 @@ export function PrinciplesBand({ index }: PrinciplesBandProps) {
               delay={i * 120}
               className="border-b border-line-inverse py-8 md:border-b-0 md:border-l md:px-8 md:first:border-l-0 md:first:pl-0"
             >
-              <span className="type-number text-sm text-accent">{formatIndex(i)}</span>
+              <span className="type-number text-sm text-accent">
+                {formatIndex(i)}
+              </span>
               <h3 className="type-h3 mt-6">{principle.title}</h3>
-              <p className="mt-3 max-w-[22rem] text-silver">{principle.description}</p>
+              <p className="mt-3 max-w-[22rem] text-silver">
+                {principle.description}
+              </p>
             </Reveal>
           ))}
         </ol>

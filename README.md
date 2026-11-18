@@ -1,6 +1,6 @@
-# Nigat Motors
+# NF Car Importer
 
-Marketing website for **Nigat Motors**, built with Next.js (App Router), React, TypeScript and Tailwind CSS.
+Marketing website for **NF Car Importer**, built with Next.js (App Router), React, TypeScript and Tailwind CSS.
 
 It shares the engineering structure of Nigat Construction (feature-first folders, typed data,
 Server Components by default) but has its **own brand identity**: a dark, cinematic, premium
@@ -22,13 +22,13 @@ npm run lint
 
 ## Stack
 
-| Concern | Choice |
-| --- | --- |
-| Framework | Next.js 16 (App Router, Cache Components, Partial Prefetching) |
-| UI | React 19, TypeScript (strict) |
-| Styling | Tailwind CSS v4: tokens in `src/styles/globals.css` (`@theme`) |
-| Icons | `lucide-react` (the only extra runtime dependency) |
-| Fonts | Archivo (variable `wdth` axis, display) + Manrope (body) via `next/font` |
+| Concern   | Choice                                                                                                                                 |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework | Next.js 16 (App Router, Cache Components, Partial Prefetching)                                                                         |
+| UI        | React 19, TypeScript (strict)                                                                                                          |
+| Styling   | Tailwind CSS v4: tokens in `src/styles/globals.css` (`@theme`)                                                                         |
+| Icons     | `lucide-react` (the only extra runtime dependency)                                                                                     |
+| Fonts     | Archivo (variable `wdth` axis, display) + Manrope (body) via `next/font`                                                               |
 | Animation | CSS-only: scroll reveals (`<Reveal />` + IntersectionObserver), hero zoom, staggered rise; all disabled under `prefers-reduced-motion` |
 
 ## Architecture (feature-first)
@@ -102,15 +102,15 @@ Verified company details (legal name, phones, email, location, social links) and
 (`SITE`, `CONTACT`, `SERVICES`) and an Amharic one (`SITE_AM`, `CONTACT_AM`, `SERVICES_AM`). The
 values below are still placeholders and must be replaced before launch:
 
-| Item | Location | Current placeholder |
-| --- | --- | --- |
-| Sector website URLs | `src/constants/nigat-group.ts` (`SECTOR_URLS`); env vars `NEXT_PUBLIC_CONSTRUCTION_URL`, `NEXT_PUBLIC_MOTORS_URL`, `NEXT_PUBLIC_EXPORTS_URL` override them | `https://*.nigat.example` |
-| Sector descriptions | `src/constants/nigat-group.ts` (`SECTORS`) | One-line summaries for each sector |
-| Logo | `src/components/ui/Logo.tsx`, `src/app/icon.svg` | Copper "N" mark + wordmark |
-| Production URL | `NEXT_PUBLIC_SITE_URL` env var | `http://localhost:3000` |
-| Vehicle categories | `src/features/vehicles/data/vehicle-categories.ts` | 6 general categories (not inventory) |
-| About / brand copy | `src/features/about/data/about.ts` | General copy, no figures or dates |
-| FAQ answers | `src/features/faqs/data/faqs.ts` | Process-only answers, no policies |
+| Item                | Location                                                                                                                                                   | Current placeholder                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| Sector website URLs | `src/constants/nigat-group.ts` (`SECTOR_URLS`); env vars `NEXT_PUBLIC_CONSTRUCTION_URL`, `NEXT_PUBLIC_MOTORS_URL`, `NEXT_PUBLIC_EXPORTS_URL` override them | `https://*.nigat.example`            |
+| Sector descriptions | `src/constants/nigat-group.ts` (`SECTORS`)                                                                                                                 | One-line summaries for each sector   |
+| Logo                | `src/components/ui/Logo.tsx`, `src/app/icon.svg`                                                                                                           | Copper "N" mark + wordmark           |
+| Production URL      | `NEXT_PUBLIC_SITE_URL` env var                                                                                                                             | `http://localhost:3000`              |
+| Vehicle categories  | `src/features/vehicles/data/vehicle-categories.ts`                                                                                                         | 6 general categories (not inventory) |
+| About / brand copy  | `src/features/about/data/about.ts`                                                                                                                         | General copy, no figures or dates    |
+| FAQ answers         | `src/features/faqs/data/faqs.ts`                                                                                                                           | Process-only answers, no policies    |
 
 The copy deliberately avoids invented facts: no founding year, statistics, reviews, team members,
 brands carried or prices.
@@ -127,7 +127,7 @@ Vehicle and service pages link to `/contact?interest=<slug>#enquiry`, which pres
 ## Images
 
 Photos in `public/images/` are representative stock photography from
-[Unsplash](https://unsplash.com/license), free for commercial use. Replace them with Nigat Motors'
+[Unsplash](https://unsplash.com/license), free for commercial use. Replace them with NF Car Importer'
 own showroom, vehicle and workshop photos when available, keeping the same file names.
 
 The home hero video `public/videos/hero-drive.mp4` is Mixkit clip #52427, used under the

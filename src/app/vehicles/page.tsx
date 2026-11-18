@@ -6,7 +6,8 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
   title: "Vehicles",
-  description: "Explore vehicle categories at Nigat Motors — sedans, SUVs, pickups, hatchbacks, crossovers and electric or hybrid vehicles.",
+  description:
+    "Explore vehicle categories at NF Car Importer — sedans, SUVs, pickups, hatchbacks, crossovers and electric or hybrid vehicles.",
   path: ROUTES.vehicles,
 });
 

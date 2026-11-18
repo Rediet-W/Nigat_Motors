@@ -15,14 +15,26 @@ export function Logo({ className }: LogoProps) {
     <Link
       href={ROUTES.home}
       aria-label={`${SITE.name} — home`}
-      className={cn("group inline-flex items-center gap-3 text-paper", className)}
+      className={cn(
+        "group inline-flex items-center gap-3 text-paper",
+        className,
+      )}
     >
-      <Image src={logo} alt="" aria-hidden fetchPriority="high" className="h-9 w-auto shrink-0" sizes="64px" />
+      <Image
+        src={logo}
+        alt=""
+        aria-hidden
+        fetchPriority="high"
+        className="h-9 w-auto shrink-0"
+        sizes="64px"
+      />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-bold tracking-[0.04em] uppercase [font-variation-settings:'wdth'_125]">
-          Nigat
+          NF Car
         </span>
-        <span className="mt-1 text-[0.625rem] font-bold tracking-[0.42em] text-silver uppercase">Motors</span>
+        <span className="mt-1 text-[0.625rem] font-bold tracking-[0.42em] text-silver uppercase">
+          Importer
+        </span>
       </span>
     </Link>
   );

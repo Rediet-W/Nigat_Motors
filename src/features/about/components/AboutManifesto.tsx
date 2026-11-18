@@ -18,9 +18,11 @@ export function AboutManifesto({ index, cta }: AboutManifestoProps) {
         intro={
           <>
             <Eyebrow index={index} className="mb-8">
-              About Nigat Motors
+              About NF Car Importer
             </Eyebrow>
-            <h2 className="type-display text-balance lg:text-[length:clamp(2.5rem,4vw,4.75rem)]">{ABOUT_INTRO.title}</h2>
+            <h2 className="type-display text-balance lg:text-[length:clamp(2.5rem,4vw,4.75rem)]">
+              {ABOUT_INTRO.title}
+            </h2>
             <p className="type-lead mt-8 text-steel">{ABOUT_INTRO.lead}</p>
           </>
         }

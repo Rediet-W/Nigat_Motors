@@ -44,7 +44,7 @@ export const GROUP = {
 export const SECTORS: Sector[] = [
   {
     key: "construction",
-    name: "Nigat Construction",
+    name: "Nigat Fanawi Construction",
     nameAm: "ንጋት ኮንስትራክሽን",
     description: "Building and construction projects.",
     descriptionAm: "የሕንፃ እና የኮንስትራክሽን ፕሮጀክቶች።",
@@ -52,7 +52,7 @@ export const SECTORS: Sector[] = [
   },
   {
     key: "motors",
-    name: "Nigat Motors",
+    name: "NF Car Importer",
     nameAm: "ንጋት ሞተርስ",
     description: "Electric & hybrid vehicles and after-sales support.",
     descriptionAm: "የኤሌክትሪክ እና ሃይብሪድ ተሽከርካሪዎች እና ከሽያጭ በኋላ ድጋፍ።",

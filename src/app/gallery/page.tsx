@@ -7,14 +7,19 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
   title: "Gallery",
-  description: "A visual journey through the world of Nigat Motors.",
+  description: "A visual journey through the world of NF Car Importer.",
   path: ROUTES.gallery,
 });
 
 export default function GalleryPage() {
   return (
     <>
-      <PageHero eyebrow="In focus" title="Gallery" image="/images/hero-gallery.jpg" size="compact" />
+      <PageHero
+        eyebrow="In focus"
+        title="Gallery"
+        image="/images/hero-gallery.jpg"
+        size="compact"
+      />
       <Section>
         <GalleryGrid />
       </Section>

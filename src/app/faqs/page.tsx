@@ -6,7 +6,8 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
   title: "FAQs",
-  description: "Answers to common questions about Nigat Motors vehicles, services and how to get in touch.",
+  description:
+    "Answers to common questions about NF Car Importer vehicles, services and how to get in touch.",
   path: ROUTES.faqs,
 });
 

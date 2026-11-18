@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { cacheLife } from "next/cache";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
-import { FOOTER_EXPLORE_LINKS, FOOTER_SERVICE_LINKS } from "@/constants/navigation";
+import {
+  FOOTER_EXPLORE_LINKS,
+  FOOTER_SERVICE_LINKS,
+} from "@/constants/navigation";
 import { ROUTES } from "@/constants/routes";
 import { CURRENT_SECTOR, GROUP, SECTORS } from "@/constants/nigat-group";
 import { CONTACT, SITE, SOCIAL_LINKS } from "@/constants/site";
@@ -22,7 +25,10 @@ function FooterColumn({ title, links }: { title: string; links: NavLink[] }) {
       <ul className="space-y-3">
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="text-paper/85 transition-colors duration-500 hover:text-accent">
+            <Link
+              href={link.href}
+              className="text-paper/85 transition-colors duration-500 hover:text-accent"
+            >
               {link.label}
             </Link>
           </li>
@@ -40,7 +46,9 @@ export async function Footer() {
       <Container>
         {/* Closing call to action */}
         <div className="flex flex-col gap-10 border-b border-line-inverse py-16 lg:flex-row lg:items-end lg:justify-between lg:py-24">
-          <p className="type-h2 max-w-[18ch] text-balance">Your next drive starts with a conversation.</p>
+          <p className="type-h2 max-w-[18ch] text-balance">
+            Your next drive starts with a conversation.
+          </p>
           <ButtonLink href={ROUTES.contact}>Send an Enquiry</ButtonLink>
         </div>
 
@@ -49,7 +57,8 @@ export async function Footer() {
           <div className="sm:col-span-2 lg:col-span-4">
             <Logo />
             <p className="mt-6 max-w-[22rem] text-silver">
-              Electric & hybrid vehicles, after-sales support and straightforward advice — all in one place.
+              Electric & hybrid vehicles, after-sales support and
+              straightforward advice — all in one place.
             </p>
           </div>
           <div className="lg:col-span-2">
@@ -62,17 +71,26 @@ export async function Footer() {
             <h2 className="type-eyebrow mb-6 text-silver">Contact</h2>
             <ul className="space-y-3 text-paper/85">
               <li>
-                <a href={CONTACT.phoneHref} className="transition-colors duration-500 hover:text-accent">
+                <a
+                  href={CONTACT.phoneHref}
+                  className="transition-colors duration-500 hover:text-accent"
+                >
                   {CONTACT.phone}
                 </a>
               </li>
               <li>
-                <a href={CONTACT.altPhoneHref} className="transition-colors duration-500 hover:text-accent">
+                <a
+                  href={CONTACT.altPhoneHref}
+                  className="transition-colors duration-500 hover:text-accent"
+                >
                   {CONTACT.altPhone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${CONTACT.email}`} className="break-all transition-colors duration-500 hover:text-accent">
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="break-all transition-colors duration-500 hover:text-accent"
+                >
                   {CONTACT.email}
                 </a>
               </li>
@@ -95,10 +113,15 @@ export async function Footer() {
         </div>
 
         {/* Nigat Group: the parent company's sectors, each with its own website */}
-        <nav aria-label={GROUP.name} className="border-t border-line-inverse py-16">
+        <nav
+          aria-label={GROUP.name}
+          className="border-t border-line-inverse py-16"
+        >
           <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
             <h2 className="type-eyebrow text-silver">{GROUP.name}</h2>
-            <p className="text-sm text-silver">{SITE.legalName} — one parent company, three sectors.</p>
+            <p className="text-sm text-silver">
+              {SITE.legalName} — one parent company, three sectors.
+            </p>
           </div>
           <ul className="mt-8 grid gap-px border-y border-line-inverse bg-line-inverse md:grid-cols-3">
             {SECTORS.map((sector, index) => {
@@ -111,7 +134,9 @@ export async function Footer() {
                     aria-current={current ? "page" : undefined}
                     className="group flex h-full flex-col gap-3 py-8 transition-colors duration-500 md:px-8 md:first:pl-0"
                   >
-                    <span className="type-number text-sm text-accent">{formatIndex(index)}</span>
+                    <span className="type-number text-sm text-accent">
+                      {formatIndex(index)}
+                    </span>
                     <span className="type-h4 flex items-start justify-between gap-3 text-paper transition-colors duration-500 group-hover:text-accent group-aria-[current=page]:text-accent">
                       {sector.name}
                       {!current && (
@@ -121,8 +146,14 @@ export async function Footer() {
                         />
                       )}
                     </span>
-                    <span className="text-sm text-silver">{sector.description}</span>
-                    {current && <span className="type-eyebrow text-accent">You are here</span>}
+                    <span className="text-sm text-silver">
+                      {sector.description}
+                    </span>
+                    {current && (
+                      <span className="type-eyebrow text-accent">
+                        You are here
+                      </span>
+                    )}
                   </a>
                 </li>
               );
@@ -134,7 +165,7 @@ export async function Footer() {
       {/* Oversized wordmark */}
       <div aria-hidden className="select-none">
         <p className="type-wordmark -mb-[0.1em] text-center text-graphite">
-          Nigat Motors
+          NF Car Importer
         </p>
       </div>
 
@@ -143,7 +174,10 @@ export async function Footer() {
           <p>
             © {year} {SITE.legalName} ({SITE.name}). All rights reserved.
           </p>
-          <a href="#main-content" className="type-nav inline-flex items-center gap-2 transition-colors hover:text-paper">
+          <a
+            href="#main-content"
+            className="type-nav inline-flex items-center gap-2 transition-colors hover:text-paper"
+          >
             Back to top <ArrowUp aria-hidden className="size-3.5" />
           </a>
         </Container>

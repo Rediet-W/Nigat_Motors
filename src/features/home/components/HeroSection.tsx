@@ -23,11 +23,13 @@ export function HeroSection() {
           </Eyebrow>
           <h1 className="type-display-xl">
             <span className="block overflow-hidden pb-[0.04em]">
-              <span className="block animate-rise [animation-delay:120ms]">Drive</span>
+              <span className="block animate-rise [animation-delay:120ms]">
+                Drive
+              </span>
             </span>
             <span className="block overflow-hidden pb-[0.04em]">
               <span className="block animate-rise [animation-delay:240ms]">
-                Forward<span className="text-accent">.</span>
+                The Future<span className="text-accent">.</span>
               </span>
             </span>
           </h1>
