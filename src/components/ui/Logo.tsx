@@ -30,7 +30,7 @@ export function Logo({ className }: LogoProps) {
       />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-bold tracking-[0.04em] uppercase [font-variation-settings:'wdth'_125]">
-          NF Car
+          Car
         </span>
         <span className="mt-1 text-[0.625rem] font-bold tracking-[0.42em] text-silver uppercase">
           Importer
