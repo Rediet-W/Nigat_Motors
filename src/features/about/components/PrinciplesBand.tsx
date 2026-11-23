@@ -1,14 +1,18 @@
 import Image from "next/image";
 import { formatIndex } from "@/lib/format";
 import { Container, Eyebrow, Reveal } from "@/components/ui";
-import { PRINCIPLES } from "../data/about";
+import { getI18n } from "@/i18n/server";
+import { getAbout } from "../data/about";
 
 interface PrinciplesBandProps {
   index?: string;
 }
 
 /** Full-bleed landscape photograph carrying the three brand principles. */
-export function PrinciplesBand({ index }: PrinciplesBandProps) {
+export async function PrinciplesBand({ index }: PrinciplesBandProps) {
+  const { locale, t } = await getI18n();
+  const { principles } = getAbout(locale);
+
   return (
     <section className="relative isolate overflow-hidden bg-ink text-paper">
       <Image
@@ -20,25 +24,25 @@ export function PrinciplesBand({ index }: PrinciplesBandProps) {
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(10_10_11/0.75)_0%,rgb(10_10_11/0.3)_38%,rgb(10_10_11/0.88)_68%,rgb(10_10_11/0.96)_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(18_38_58/0.75)_0%,rgb(18_38_58/0.3)_38%,rgb(18_38_58/0.88)_68%,rgb(18_38_58/0.96)_100%)]"
       />
 
       <Container className="flex min-h-[min(110svh,1000px)] flex-col justify-between gap-24 py-(--space-section)">
         <div className="max-w-[56rem]">
           <Reveal>
             <Eyebrow index={index} inverse className="mb-8">
-              Why NF Car Importer
+              {t.about.principles.eyebrow}
             </Eyebrow>
           </Reveal>
           <Reveal delay={100}>
             <h2 className="type-display text-balance">
-              A better way to own a vehicle.
+              {t.about.principles.title}
             </h2>
           </Reveal>
         </div>
 
         <ol className="grid border-t border-line-inverse md:grid-cols-3">
-          {PRINCIPLES.map((principle, i) => (
+          {principles.map((principle, i) => (
             <Reveal
               as="li"
               key={principle.title}

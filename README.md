@@ -115,6 +115,23 @@ values below are still placeholders and must be replaced before launch:
 The copy deliberately avoids invented facts: no founding year, statistics, reviews, team members,
 brands carried or prices.
 
+## Languages (English / Amharic)
+
+- **URLs:** English is served at unprefixed URLs (`/about`); Amharic under `/am` (`/am/about`).
+  `src/proxy.ts` rewrites unprefixed requests to the internal `app/[lang]` routes and
+  redirects `/en/...` to the unprefixed URL. Every page is prerendered in both languages.
+- **Switcher:** `components/layout/LanguageSwitcher.tsx` ("EN | አማ"), placed top right of the
+  header (and beside the menu button on mobile) where visitors expect it, plus in the footer.
+- **Interface copy:** `src/i18n/dictionaries/en.ts` and `am.ts` (the Amharic file must match
+  the English keys; TypeScript enforces it).
+- **Content:** each feature's `data/` file holds both languages (`getServices(locale)`,
+  `getFaqGroups(locale)`, `getAbout(locale)`, …).
+- **Reading the locale:** Server Components use `getI18n()` from `@/i18n/server`; Client
+  Components use `useI18n()` from `@/i18n/LocaleProvider`. Use `Link` from `@/i18n/Link`
+  for internal links so visitors stay in their language.
+- **Review:** Amharic copy should be proofread by a native speaker before launch. Enquiry
+  emails are always composed in English for the team's inbox.
+
 ## Enquiry form
 
 No backend or email service was specified. The form (`src/features/contact`) validates input on the

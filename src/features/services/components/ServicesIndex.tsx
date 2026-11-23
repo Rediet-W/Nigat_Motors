@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import { ArrowUpRight } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 import { formatIndex } from "@/lib/format";
 import { Reveal, Section, SectionHeading, TextLink, type SectionTone } from "@/components/ui";
-import { SERVICES } from "../data/services";
+import { getI18n } from "@/i18n/server";
+import { getServices } from "../data/services";
 
 interface ServicesIndexProps {
   index?: string;
@@ -19,14 +20,15 @@ interface ServicesIndexProps {
  * Typographic index of services. On hover (desktop) each row opens a
  * photographic window between the numeral and the title.
  */
-export function ServicesIndex({
+export async function ServicesIndex({
   index,
-  eyebrow = "Services",
-  title = "Everything your vehicle needs",
+  eyebrow,
+  title,
   excludeSlug,
   tone = "bone",
 }: ServicesIndexProps) {
-  const services = SERVICES.map((service, position) => ({ service, position })).filter(
+  const { locale, t } = await getI18n();
+  const services = getServices(locale).map((service, position) => ({ service, position })).filter(
     ({ service }) => service.slug !== excludeSlug,
   );
 
@@ -34,10 +36,10 @@ export function ServicesIndex({
     <Section tone={tone}>
       <SectionHeading
         index={index}
-        eyebrow={eyebrow}
-        title={title}
-        lead="From choosing the right vehicle to keeping it in great shape — support at every stage of ownership."
-        action={<TextLink href={ROUTES.services}>All services</TextLink>}
+        eyebrow={eyebrow ?? t.services.index.eyebrow}
+        title={title ?? t.services.index.title}
+        lead={t.services.index.lead}
+        action={<TextLink href={ROUTES.services}>{t.services.index.all}</TextLink>}
         layout="split"
       />
 

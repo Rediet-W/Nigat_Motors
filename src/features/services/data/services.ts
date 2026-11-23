@@ -1,15 +1,35 @@
+import type { Locale } from "@/i18n/config";
 import type { ProcessStep, Service } from "@/types";
 
 /**
- * Services offered by NF Car Importer (Nigat Fanawi Trading PLC).
+ * Services offered by NF Car Importer (Nigat Fanawi Trading PLC), following
+ * the brand guideline: vehicle importing and sales, electric vehicles,
+ * automotive accessories and spare parts — plus after-sales support.
  * `SERVICES` is the English (en) data rendered by the site; `SERVICES_AM`
  * holds the matching Amharic (am) version with the same slugs and images.
  */
 export const SERVICES: Service[] = [
   {
+    slug: "vehicle-importing-sales",
+    title: "Vehicle Importing & Sales",
+    image: "/images/service-vehicle-sales.jpg",
+    excerpt:
+      "Sourcing and importing quality vehicles that meet your needs and preferences, with a clear, straightforward process.",
+    overview: [
+      "We connect you with the vehicle you want. Tell us the make, model and preferences you have in mind, and we source and import a quality vehicle that fits.",
+      "Our aim is to make vehicle importation accessible, straightforward and dependable, with transparent communication from your first enquiry until your vehicle is delivered.",
+    ],
+    highlights: [
+      "Vehicles sourced to your needs and preferences",
+      "Importation handled from enquiry to delivery",
+      "Transparent communication at every step",
+      "Professional, customer-focused service",
+    ],
+  },
+  {
     slug: "electric-hybrid-vehicles",
     title: "Electric & Hybrid Vehicles",
-    image: "/images/service-vehicle-sales.jpg",
+    image: "/images/category-electric.jpg",
     excerpt:
       "Electric and hybrid vehicles including the BYD E7, Yuan Up, Seagull, Leopard, Sea Lion 06, Toyota Cross Hybrid and others.",
     overview: [
@@ -21,6 +41,23 @@ export const SERVICES: Service[] = [
       "BYD Leopard and Sea Lion 06",
       "Toyota Cross Hybrid",
       "Other electric and hybrid models on request",
+    ],
+  },
+  {
+    slug: "accessories-spare-parts",
+    title: "Accessories & Spare Parts",
+    image: "/images/service-parts.jpg",
+    excerpt:
+      "Automotive accessories and spare parts to keep your vehicle performing and personalised to you.",
+    overview: [
+      "We supply automotive accessories and spare parts, so you can keep your vehicle in good condition and equip it the way you want.",
+      "Send us your vehicle details and the part or accessory you need, and we will let you know the options available and the next steps.",
+    ],
+    highlights: [
+      "Spare parts for your vehicle",
+      "Automotive accessories",
+      "Help identifying the right part",
+      "Clear options before you commit",
     ],
   },
   {
@@ -45,9 +82,26 @@ export const SERVICES: Service[] = [
 /** Amharic (am) version of `SERVICES`. */
 export const SERVICES_AM: Service[] = [
   {
+    slug: "vehicle-importing-sales",
+    title: "የተሽከርካሪ ማስመጣት እና ሽያጭ",
+    image: "/images/service-vehicle-sales.jpg",
+    excerpt:
+      "ፍላጎትዎን እና ምርጫዎን የሚያሟሉ ጥራት ያላቸውን ተሽከርካሪዎች በግልጽ እና ቀላል ሂደት እናፈላልጋለን፣ እናስመጣለን።",
+    overview: [
+      "የሚፈልጉትን ተሽከርካሪ እናገናኝዎታለን። የሚፈልጉትን ሥሪት፣ ሞዴል እና ምርጫዎች ይንገሩን፤ የሚስማማዎትን ጥራት ያለው ተሽከርካሪ እናፈላልጋለን፣ እናስመጣለን።",
+      "ዓላማችን የተሽከርካሪ ማስመጣትን ተደራሽ፣ ቀላል እና አስተማማኝ ማድረግ ነው፤ ከመጀመሪያው ጥያቄዎ ጀምሮ ተሽከርካሪዎ እስኪደርስ ድረስ ግልጽ ግንኙነት እናደርጋለን።",
+    ],
+    highlights: [
+      "እንደ ፍላጎትዎ እና ምርጫዎ የሚፈለጉ ተሽከርካሪዎች",
+      "ከጥያቄ እስከ ርክክብ የማስመጣት ሂደት",
+      "በእያንዳንዱ ደረጃ ግልጽ ግንኙነት",
+      "ሙያዊ እና ደንበኛ ተኮር አገልግሎት",
+    ],
+  },
+  {
     slug: "electric-hybrid-vehicles",
     title: "የኤሌክትሪክ እና ሃይብሪድ ተሽከርካሪዎች",
-    image: "/images/service-vehicle-sales.jpg",
+    image: "/images/category-electric.jpg",
     excerpt:
       "BYD E7፣ Yuan Up፣ Seagull፣ Leopard፣ Sea Lion 06፣ Toyota Cross Hybrid እና ሌሎችንም ጨምሮ የኤሌክትሪክ እና ሃይብሪድ ተሽከርካሪዎች።",
     overview: [
@@ -59,6 +113,22 @@ export const SERVICES_AM: Service[] = [
       "BYD Leopard እና Sea Lion 06",
       "Toyota Cross Hybrid",
       "ሌሎች የኤሌክትሪክ እና ሃይብሪድ ሞዴሎች በጥያቄ",
+    ],
+  },
+  {
+    slug: "accessories-spare-parts",
+    title: "የመኪና መለዋወጫዎች እና ተጨማሪ ዕቃዎች",
+    image: "/images/service-parts.jpg",
+    excerpt: "ተሽከርካሪዎ በጥሩ ሁኔታ እንዲሠራ እና እንደ ምርጫዎ እንዲሆን የመኪና መለዋወጫዎች እና ተጨማሪ ዕቃዎች።",
+    overview: [
+      "ተሽከርካሪዎን በጥሩ ሁኔታ እንዲጠብቁ እና በሚፈልጉት መንገድ እንዲያሟሉ የመኪና መለዋወጫዎችን እና ተጨማሪ ዕቃዎችን እናቀርባለን።",
+      "የተሽከርካሪዎን ዝርዝር እና የሚፈልጉትን መለዋወጫ ወይም ዕቃ ይላኩልን፤ ያሉትን አማራጮች እና ቀጣይ እርምጃዎችን እናሳውቅዎታለን።",
+    ],
+    highlights: [
+      "ለተሽከርካሪዎ መለዋወጫዎች",
+      "የመኪና ተጨማሪ ዕቃዎች",
+      "ትክክለኛውን መለዋወጫ ለመለየት እገዛ",
+      "ከመወሰንዎ በፊት ግልጽ አማራጮች",
     ],
   },
   {
@@ -79,7 +149,7 @@ export const SERVICES_AM: Service[] = [
   },
 ];
 
-export const SERVICE_PROCESS: ProcessStep[] = [
+const SERVICE_PROCESS_EN: ProcessStep[] = [
   {
     title: "Get in touch",
     description: "Send an enquiry or call us and tell us what you need.",
@@ -98,6 +168,33 @@ export const SERVICE_PROCESS: ProcessStep[] = [
   },
 ];
 
-export function getServiceBySlug(slug: string): Service | undefined {
-  return SERVICES.find((service) => service.slug === slug);
+const SERVICE_PROCESS_AM: ProcessStep[] = [
+  {
+    title: "ያግኙን",
+    description: "ጥያቄ ይላኩ ወይም ይደውሉልን፤ የሚፈልጉትን ይንገሩን።",
+  },
+  {
+    title: "ፍላጎትዎን እንወያያለን",
+    description: "እናዳምጣለን፣ ትክክለኛ ጥያቄዎችን እንጠይቃለን፣ አማራጮችዎንም እናብራራለን።",
+  },
+  {
+    title: "ዕቅዱን እንስማማለን",
+    description: "ማንኛውንም ውሳኔ ከማድረግዎ በፊት ግልጽ ቀጣይ እርምጃዎችን ያገኛሉ።",
+  },
+  {
+    title: "በእርግጠኝነት ያሽከርክሩ",
+    description: "ለጥያቄዎች እና ለቀጣይ ድጋፍ ሁልጊዜ ዝግጁ ነን።",
+  },
+];
+
+export function getServices(locale: Locale): Service[] {
+  return locale === "am" ? SERVICES_AM : SERVICES;
+}
+
+export function getServiceProcess(locale: Locale): ProcessStep[] {
+  return locale === "am" ? SERVICE_PROCESS_AM : SERVICE_PROCESS_EN;
+}
+
+export function getServiceBySlug(slug: string, locale: Locale): Service | undefined {
+  return getServices(locale).find((service) => service.slug === slug);
 }

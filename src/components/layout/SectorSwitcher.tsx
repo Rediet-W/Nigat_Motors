@@ -1,7 +1,11 @@
+"use client";
+
 import { ArrowUpRight, ChevronDown, LayoutGrid } from "lucide-react";
-import { CURRENT_SECTOR, GROUP, SECTORS } from "@/constants/nigat-group";
+import { CURRENT_SECTOR, getGroup } from "@/constants/nigat-group";
 import { ROUTES } from "@/constants/routes";
-import { SITE } from "@/constants/site";
+import { getSite } from "@/constants/site";
+import { Link } from "@/i18n/Link";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
 import { formatIndex } from "@/lib/format";
 import { Container } from "@/components/ui";
@@ -12,16 +16,20 @@ import { Container } from "@/components/ui";
  * listing every Nigat sector with the current site marked.
  */
 export function SectorSwitcher() {
+  const { locale, t } = useI18n();
+  const group = getGroup(locale);
+  const site = getSite(locale);
+
   return (
     <div className="group flex h-full items-center">
       <button
         type="button"
         aria-haspopup="true"
-        aria-label={`${GROUP.name} — switch sector`}
+        aria-label={t.nav.switchSector(group.name)}
         className="type-nav flex items-center gap-2 whitespace-nowrap text-silver transition-colors duration-500 hover:text-paper group-focus-within:text-paper"
       >
         <LayoutGrid aria-hidden className="size-4 text-accent" />
-        <span className="hidden 2xl:inline">{GROUP.name}</span>
+        <span className="hidden 2xl:inline">{group.name}</span>
         <ChevronDown
           aria-hidden
           className="size-3.5 transition-transform duration-500 ease-drive group-focus-within:rotate-180 group-hover:rotate-180"
@@ -38,16 +46,15 @@ export function SectorSwitcher() {
       >
         <Container className="grid grid-cols-4 gap-px py-10">
           <div className="flex flex-col gap-3 px-6 py-2">
-            <span className="type-eyebrow text-silver">{GROUP.name}</span>
-            <span className="text-sm leading-relaxed text-silver">
-              {SITE.legalName} — one parent company, three sectors.
-            </span>
+            <span className="type-eyebrow text-silver">{group.name}</span>
+            <span className="text-sm leading-relaxed text-silver">{t.nav.groupSummary(site.legalName)}</span>
           </div>
-          {SECTORS.map((sector, index) => {
+          {group.sectors.map((sector, index) => {
             const current = sector.key === CURRENT_SECTOR;
+            const SectorLink = current ? Link : "a";
 
             return (
-              <a
+              <SectorLink
                 key={sector.key}
                 href={current ? ROUTES.home : sector.href}
                 aria-current={current ? "page" : undefined}
@@ -69,9 +76,9 @@ export function SectorSwitcher() {
                   {sector.description}
                 </span>
                 {current && (
-                  <span className="type-eyebrow text-accent">You are here</span>
+                  <span className="type-eyebrow text-accent">{t.nav.youAreHere}</span>
                 )}
-              </a>
+              </SectorLink>
             );
           })}
         </Container>

@@ -1,4 +1,4 @@
 export { ServiceDetail } from "./components/ServiceDetail";
 export { ServicesIndex } from "./components/ServicesIndex";
 export { ServicesShowcase } from "./components/ServicesShowcase";
-export { getServiceBySlug, SERVICES, SERVICES_AM } from "./data/services";
+export { getServiceBySlug, getServiceProcess, getServices, SERVICES } from "./data/services";

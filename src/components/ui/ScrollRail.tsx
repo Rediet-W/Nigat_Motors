@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
 
 interface ScrollRailProps {
@@ -16,6 +17,7 @@ interface ScrollRailProps {
  * devices, plus previous / next controls for mouse and keyboard users.
  */
 export function ScrollRail({ children, label, inverse, className }: ScrollRailProps) {
+  const { t } = useI18n();
   const railRef = useRef<HTMLUListElement>(null);
 
   const scrollByPage = (direction: 1 | -1) => {
@@ -39,10 +41,10 @@ export function ScrollRail({ children, label, inverse, className }: ScrollRailPr
         {children}
       </ul>
       <div className="mt-10 flex justify-end gap-2">
-        <button type="button" onClick={() => scrollByPage(-1)} aria-label="Scroll back" className={control}>
+        <button type="button" onClick={() => scrollByPage(-1)} aria-label={t.scrollRail.back} className={control}>
           <ArrowLeft aria-hidden className="size-4" />
         </button>
-        <button type="button" onClick={() => scrollByPage(1)} aria-label="Scroll forward" className={control}>
+        <button type="button" onClick={() => scrollByPage(1)} aria-label={t.scrollRail.forward} className={control}>
           <ArrowRight aria-hidden className="size-4" />
         </button>
       </div>

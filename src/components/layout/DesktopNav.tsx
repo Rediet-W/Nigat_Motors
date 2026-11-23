@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import { ArrowUpRight } from "lucide-react";
 import type { NavItem } from "@/types";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
 import { formatIndex } from "@/lib/format";
 import { Container } from "@/components/ui";
@@ -17,8 +18,10 @@ interface DesktopNavProps {
  * full-width panel beneath the header on hover or keyboard focus.
  */
 export function DesktopNav({ items }: DesktopNavProps) {
+  const { t } = useI18n();
+
   return (
-    <nav aria-label="Main" className="hidden h-full lg:block">
+    <nav aria-label={t.nav.mainLabel} className="hidden h-full lg:block">
       <ActivePath>
         {(pathname) => (
           <ul className="flex h-full items-center gap-7 xl:gap-10">

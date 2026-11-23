@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="56" viewBox="0 0 100 56">
+  <!-- NF CAR IMPORTER "Motion Loop" pattern tile: staggered rows of rim-inspired
+       crescents (an oval with a lower, offset oval cut out). Used as a CSS mask,
+       so the fill colour comes from the element's background colour. -->
+  <defs>
+    <mask id="m" maskUnits="userSpaceOnUse" x="-2" y="-2" width="104" height="52">
+      <rect x="-2" y="-2" width="104" height="52" fill="#fff"/>
+      <ellipse cx="51" cy="33" rx="42" ry="20" fill="#000"/>
+    </mask>
+    <g id="c">
+      <ellipse cx="50" cy="24" rx="48" ry="24" mask="url(#m)"/>
+    </g>
+  </defs>
+  <use href="#c" x="0" y="0"/>
+  <use href="#c" x="-50" y="28"/>
+  <use href="#c" x="50" y="28"/>
+  <use href="#c" x="0" y="56"/>
+  <use href="#c" x="-50" y="-28"/>
+  <use href="#c" x="50" y="-28"/>
+</svg>

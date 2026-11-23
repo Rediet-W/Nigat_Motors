@@ -1,6 +1,7 @@
 import { Eyebrow, TextLink } from "@/components/ui";
 import type { NavLink } from "@/types";
-import { ABOUT_INTRO, ABOUT_TOPICS } from "../data/about";
+import { getI18n } from "@/i18n/server";
+import { getAbout } from "../data/about";
 import { AboutTopics } from "./AboutTopics";
 
 interface AboutManifestoProps {
@@ -10,20 +11,23 @@ interface AboutManifestoProps {
 }
 
 /** Brand introduction: half-screen pinned photo beside the intro and topics. */
-export function AboutManifesto({ index, cta }: AboutManifestoProps) {
+export async function AboutManifesto({ index, cta }: AboutManifestoProps) {
+  const { locale, t } = await getI18n();
+  const about = getAbout(locale);
+
   return (
     <section className="bg-paper text-ink">
       <AboutTopics
-        topics={ABOUT_TOPICS}
+        topics={about.topics}
         intro={
           <>
             <Eyebrow index={index} className="mb-8">
-              About NF Car Importer
+              {t.about.eyebrow}
             </Eyebrow>
             <h2 className="type-display text-balance lg:text-[length:clamp(2.5rem,4vw,4.75rem)]">
-              {ABOUT_INTRO.title}
+              {about.intro.title}
             </h2>
-            <p className="type-lead mt-8 text-steel">{ABOUT_INTRO.lead}</p>
+            <p className="type-lead mt-8 text-steel">{about.intro.lead}</p>
           </>
         }
         footer={cta && <TextLink href={cta.href}>{cta.label}</TextLink>}

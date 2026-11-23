@@ -1,17 +1,20 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/cn";
 import { formatIndex } from "@/lib/format";
 import { Eyebrow, Reveal, Section, TextLink } from "@/components/ui";
-import { SERVICES } from "../data/services";
+import { getI18n } from "@/i18n/server";
+import { getServices } from "../data/services";
 
 /** Services page: alternating editorial spreads, one per service. */
-export function ServicesShowcase() {
+export async function ServicesShowcase() {
+  const { locale, t } = await getI18n();
+
   return (
     <Section>
       <div className="space-y-24 lg:space-y-40">
-        {SERVICES.map((service, i) => {
+        {getServices(locale).map((service, i) => {
           const reversed = i % 2 === 1;
           const href = ROUTES.service(service.slug);
 
@@ -34,7 +37,7 @@ export function ServicesShowcase() {
               <div className={cn("lg:col-span-5", reversed ? "lg:order-1 lg:col-start-1" : "lg:col-start-8")}>
                 <Reveal>
                   <Eyebrow index={formatIndex(i)} className="mb-6">
-                    Service
+                    {t.common.service}
                   </Eyebrow>
                   <h2 className="type-h2 text-balance">
                     <Link href={href} className="transition-colors duration-500 hover:text-accent">
@@ -54,7 +57,7 @@ export function ServicesShowcase() {
                     ))}
                   </ul>
                   <TextLink href={href} className="mt-8">
-                    Explore {service.title}
+                    {t.services.explore(service.title)}
                   </TextLink>
                 </Reveal>
               </div>

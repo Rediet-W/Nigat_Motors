@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import type { ComponentProps } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";

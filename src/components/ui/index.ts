@@ -4,6 +4,7 @@ export type { ButtonVariant } from "./Button";
 export { Container } from "./Container";
 export { Eyebrow } from "./Eyebrow";
 export { Logo } from "./Logo";
+export { MotionElement } from "./MotionElement";
 export { NumberedSteps } from "./NumberedSteps";
 export { Reveal } from "./Reveal";
 export { ScrollRail } from "./ScrollRail";

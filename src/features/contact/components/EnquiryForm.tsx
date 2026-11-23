@@ -3,11 +3,12 @@
 import { useId, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { CONTACT } from "@/constants/site";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui";
 import {
   buildEnquiryMailto,
-  ENQUIRY_OPTIONS,
+  getEnquiryOptions,
   GENERAL_ENQUIRY,
   validateEnquiry,
   type EnquiryErrors,
@@ -31,6 +32,7 @@ const EMPTY_VALUES: Omit<EnquiryValues, "interest"> = {
 
 /** Underline-style enquiry form. Validates client-side, then hands off to the visitor's email app. */
 export function EnquiryForm({ defaultInterest = GENERAL_ENQUIRY, inverse }: EnquiryFormProps) {
+  const { locale, t } = useI18n();
   const formId = useId();
   const [values, setValues] = useState<EnquiryValues>({ ...EMPTY_VALUES, interest: defaultInterest });
   const [errors, setErrors] = useState<EnquiryErrors>({});
@@ -46,7 +48,7 @@ export function EnquiryForm({ defaultInterest = GENERAL_ENQUIRY, inverse }: Enqu
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const nextErrors = validateEnquiry(values);
+    const nextErrors = validateEnquiry(values, locale);
     setErrors(nextErrors);
 
     const firstInvalid = Object.keys(nextErrors)[0];
@@ -82,22 +84,22 @@ export function EnquiryForm({ defaultInterest = GENERAL_ENQUIRY, inverse }: Enqu
 
   return (
     <form noValidate onSubmit={handleSubmit} className="grid gap-x-8 gap-y-10 md:grid-cols-2">
-      <Field {...fieldBase} name="firstName" label="First name">
+      <Field {...fieldBase} name="firstName" label={t.form.firstName}>
         <input type="text" autoComplete="given-name" {...fieldProps("firstName")} />
       </Field>
-      <Field {...fieldBase} name="lastName" label="Last name">
+      <Field {...fieldBase} name="lastName" label={t.form.lastName}>
         <input type="text" autoComplete="family-name" {...fieldProps("lastName")} />
       </Field>
-      <Field {...fieldBase} name="email" label="Email">
+      <Field {...fieldBase} name="email" label={t.form.email}>
         <input type="email" autoComplete="email" {...fieldProps("email")} />
       </Field>
-      <Field {...fieldBase} name="phone" label="Phone">
+      <Field {...fieldBase} name="phone" label={t.form.phone}>
         <input type="tel" autoComplete="tel" {...fieldProps("phone")} />
       </Field>
-      <Field {...fieldBase} name="interest" label="Topic" className="md:col-span-2">
+      <Field {...fieldBase} name="interest" label={t.form.topic} className="md:col-span-2">
         <div className="relative">
           <select {...fieldProps("interest")}>
-            {ENQUIRY_OPTIONS.map((option) => (
+            {getEnquiryOptions(locale).map((option) => (
               <option key={option.value} value={option.value} className="text-ink">
                 {option.label}
               </option>
@@ -109,16 +111,16 @@ export function EnquiryForm({ defaultInterest = GENERAL_ENQUIRY, inverse }: Enqu
           />
         </div>
       </Field>
-      <Field {...fieldBase} name="message" label="Message" className="md:col-span-2">
-        <textarea rows={3} placeholder="Tell us what you are looking for…" {...fieldProps("message")} />
+      <Field {...fieldBase} name="message" label={t.form.message} className="md:col-span-2">
+        <textarea rows={3} placeholder={t.form.placeholder} {...fieldProps("message")} />
       </Field>
 
       <div className="flex flex-col gap-6 md:col-span-2 md:flex-row md:items-center md:justify-between">
         <p className={cn("max-w-[26rem] text-sm", inverse ? "text-silver" : "text-steel")}>
-          Submitting opens your email app with the enquiry ready to send.
+          {t.form.note}
         </p>
         <Button type="submit" variant={inverse ? "primary" : "dark"}>
-          Send enquiry
+          {t.form.submit}
         </Button>
       </div>
 
@@ -127,7 +129,7 @@ export function EnquiryForm({ defaultInterest = GENERAL_ENQUIRY, inverse }: Enqu
           <span className="flex items-start gap-3">
             <Check aria-hidden className="mt-1 size-4 shrink-0 text-accent" />
             <span>
-              Your email app should now open with your enquiry. If it didn&apos;t, email us at{" "}
+              {t.form.success}{" "}
               <a href={`mailto:${CONTACT.email}`} className="text-link">
                 {CONTACT.email}
               </a>

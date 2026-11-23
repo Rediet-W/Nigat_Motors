@@ -1,13 +1,16 @@
 import { Phone } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
-import { CONTACT } from "@/constants/site";
+import { getContact } from "@/constants/site";
+import { getI18n } from "@/i18n/server";
 import { formatIndex } from "@/lib/format";
 import { ButtonLink, Eyebrow, NumberedSteps, Reveal, Section, SectionHeading } from "@/components/ui";
 import type { Service } from "@/types";
-import { SERVICE_PROCESS } from "../data/services";
+import { getServiceProcess } from "../data/services";
 
 /** Service detail body: editorial overview with a sticky "at a glance" sheet, then the process. */
-export function ServiceDetail({ service }: { service: Service }) {
+export async function ServiceDetail({ service }: { service: Service }) {
+  const { locale, t } = await getI18n();
+  const contact = getContact(locale);
   const [intro, ...rest] = service.overview;
 
   return (
@@ -17,7 +20,7 @@ export function ServiceDetail({ service }: { service: Service }) {
           <div className="lg:col-span-7">
             <Reveal>
               <Eyebrow className="mb-8">
-                Overview
+                {t.services.overview}
               </Eyebrow>
               <p className="type-statement text-balance">{intro}</p>
             </Reveal>
@@ -31,7 +34,7 @@ export function ServiceDetail({ service }: { service: Service }) {
           <Reveal as="aside" delay={150} className="lg:col-span-4 lg:col-start-9">
             <div className="bg-ink p-8 text-paper lg:sticky lg:top-[calc(var(--header-height)+2rem)] lg:p-10">
               <Eyebrow inverse className="mb-8">
-                At a glance
+                {t.services.atAGlance}
               </Eyebrow>
               <ol className="border-t border-line-inverse">
                 {service.highlights.map((highlight, i) => (
@@ -42,14 +45,14 @@ export function ServiceDetail({ service }: { service: Service }) {
                 ))}
               </ol>
               <ButtonLink href={ROUTES.enquire(service.slug)} className="mt-10 w-full">
-                Enquire about this service
+                {t.services.enquire}
               </ButtonLink>
               <a
-                href={CONTACT.phoneHref}
+                href={contact.phoneHref}
                 className="type-nav mt-6 flex items-center justify-center gap-2 text-silver transition-colors hover:text-paper"
               >
                 <Phone aria-hidden className="size-3.5 text-accent" />
-                {CONTACT.phone}
+                {contact.phone}
               </a>
             </div>
           </Reveal>
@@ -59,12 +62,12 @@ export function ServiceDetail({ service }: { service: Service }) {
       <Section tone="graphite">
         <SectionHeading
           inverse
-          eyebrow="How it works"
-          title="From first call to the open road"
+          eyebrow={t.services.process.eyebrow}
+          title={t.services.process.title}
           layout="split"
-          lead="A clear, four-step process — so you always know what happens next."
+          lead={t.services.process.lead}
         />
-        <NumberedSteps steps={SERVICE_PROCESS} inverse />
+        <NumberedSteps steps={getServiceProcess(locale)} inverse />
       </Section>
     </>
   );

@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import { ROUTES } from "@/constants/routes";
-import { SITE } from "@/constants/site";
+import { getSite } from "@/constants/site";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
 import logo from "../../../public/images/logo.png";
 
@@ -9,12 +12,14 @@ interface LogoProps {
   className?: string;
 }
 
-/** Official Nigat mark beside the "Nigat / Motors" wordmark. */
+/** Official NF mark beside the "Car / Importer" wordmark (logo artwork is not translated). */
 export function Logo({ className }: LogoProps) {
+  const { locale, t } = useI18n();
+
   return (
     <Link
       href={ROUTES.home}
-      aria-label={`${SITE.name} — home`}
+      aria-label={`${getSite(locale).name} — ${t.common.home}`}
       className={cn(
         "group inline-flex items-center gap-3 text-paper",
         className,

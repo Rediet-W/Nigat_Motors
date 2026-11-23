@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import type { ReactNode } from "react";
 import { ROUTES } from "@/constants/routes";
+import { getI18n } from "@/i18n/server";
 import { cn } from "@/lib/cn";
 import { Container, Eyebrow } from "@/components/ui";
 import type { NavLink } from "@/types";
@@ -19,8 +20,9 @@ interface PageHeroProps {
 }
 
 /** Cinematic inner-page opener: full-bleed photo, bottom-aligned display title. */
-export function PageHero({ title, eyebrow, image, lead, trail = [], size = "tall", children }: PageHeroProps) {
-  const crumbs: NavLink[] = [{ label: "Home", href: ROUTES.home }, ...trail];
+export async function PageHero({ title, eyebrow, image, lead, trail = [], size = "tall", children }: PageHeroProps) {
+  const { t } = await getI18n();
+  const crumbs: NavLink[] = [{ label: t.common.home, href: ROUTES.home }, ...trail];
 
   return (
     <section
@@ -32,11 +34,11 @@ export function PageHero({ title, eyebrow, image, lead, trail = [], size = "tall
       <Image src={image} alt="" fill priority sizes="100vw" className="-z-20 animate-hero-zoom object-cover" />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(10_10_11/0.55)_0%,rgb(10_10_11/0.15)_35%,rgb(10_10_11/0.9)_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(18_38_58/0.55)_0%,rgb(18_38_58/0.15)_35%,rgb(18_38_58/0.9)_100%)]"
       />
 
       <Container className="pt-[calc(var(--header-height)+4rem)] pb-12 lg:pb-20">
-        <nav aria-label="Breadcrumb" className="mb-10 animate-rise lg:mb-14">
+        <nav aria-label={t.common.breadcrumb} className="mb-10 animate-rise lg:mb-14">
           <ol className="type-nav flex flex-wrap items-center gap-3 text-silver">
             {crumbs.map((crumb) => (
               <li key={crumb.href} className="flex items-center gap-3">

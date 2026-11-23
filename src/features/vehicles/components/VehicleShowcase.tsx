@@ -3,16 +3,20 @@ import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/cn";
 import { formatIndex } from "@/lib/format";
 import { ButtonLink, Eyebrow, Reveal, Section, SpecList } from "@/components/ui";
-import { VEHICLE_CATEGORIES } from "../data/vehicle-categories";
+import { getI18n } from "@/i18n/server";
+import { getVehicleCategories } from "../data/vehicle-categories";
 
 /** Vehicles page: a category index followed by one editorial spread per category. */
-export function VehicleShowcase() {
+export async function VehicleShowcase() {
+  const { locale, t } = await getI18n();
+  const categories = getVehicleCategories(locale);
+
   return (
     <>
       <Section tone="bone" compact>
-        <nav aria-label="Jump to a category">
+        <nav aria-label={t.vehicles.jumpTo}>
           <ul className="grid grid-cols-2 gap-x-8 sm:grid-cols-3 lg:grid-cols-6">
-            {VEHICLE_CATEGORIES.map((category, i) => (
+            {categories.map((category, i) => (
               <li key={category.slug} className="border-t border-line">
                 <a
                   href={`#${category.slug}`}
@@ -29,7 +33,7 @@ export function VehicleShowcase() {
 
       <Section>
         <div className="space-y-24 lg:space-y-40">
-          {VEHICLE_CATEGORIES.map((category, i) => {
+          {categories.map((category, i) => {
             const reversed = i % 2 === 1;
 
             return (
@@ -55,7 +59,7 @@ export function VehicleShowcase() {
                     <span aria-hidden className="type-number block text-[clamp(4rem,8vw,7.5rem)] leading-none text-ink/10">
                       {formatIndex(i)}
                     </span>
-                    <Eyebrow className="mt-4 mb-5">Vehicle category</Eyebrow>
+                    <Eyebrow className="mt-4 mb-5">{t.vehicles.category}</Eyebrow>
                     <h2 className="type-h2">{category.name}</h2>
                     <p className="type-lead mt-5 text-steel">{category.description}</p>
                   </Reveal>
@@ -63,12 +67,12 @@ export function VehicleShowcase() {
                     <SpecList
                       className="mt-8"
                       rows={[
-                        { label: "Ideal for", value: category.idealFor },
-                        { label: "Availability", value: "On enquiry" },
+                        { label: t.vehicles.idealFor, value: category.idealFor },
+                        { label: t.vehicles.availability, value: t.vehicles.onEnquiry },
                       ]}
                     />
                     <ButtonLink href={ROUTES.enquire(category.slug)} variant="dark" className="mt-8">
-                      Enquire about {category.name}
+                      {t.vehicles.enquireAbout(category.name)}
                     </ButtonLink>
                   </Reveal>
                 </div>

@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 /**
  * NF Car Importer — company information.
  *
@@ -8,25 +10,25 @@
 
 export const SITE = {
   name: "NF Car Importer",
-  shortName: "Nigat",
+  shortName: "NF",
   /** Official registered organization name. */
   legalName: "Nigat Fanawi Trading PLC",
-  industry: "Construction",
+  industry: "Automotive",
   established: 2018,
   description:
-    "NF Car Importer (Nigat Fanawi Trading PLC) — electric and hybrid vehicles with after-sales warranty and maintenance garage support in Addis Ababa. Explore our vehicles and services, or get in touch with our team.",
+    "NF Car Importer, an automotive sub-brand of Nigat Fanawi Trading PLC — vehicle importing and sales, electric vehicles, automotive accessories and spare parts in Addis Ababa, Ethiopia. Explore our vehicles and services, or get in touch with our team.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 } as const;
 
 /** Amharic (am) version of `SITE`. */
 export const SITE_AM = {
-  name: "ንጋት ሞተርስ",
+  name: "ኤንኤፍ የመኪና አስመጪ",
   shortName: "ንጋት",
   legalName: "ንጋት ፋናዊ ትሬዲንግ ኃ.የተ.የግ.ማ.",
-  industry: "ኮንስትራክሽን",
+  industry: "አውቶሞቲቭ",
   established: 2018,
   description:
-    "ንጋት ሞተርስ (ንጋት ፋናዊ ትሬዲንግ ኃ.የተ.የግ.ማ.) — የኤሌክትሪክ እና ሃይብሪድ ተሽከርካሪዎች ከሽያጭ በኋላ የዋስትና እና የጋራዥ ጥገና አገልግሎት ጋር በአዲስ አበባ። ተሽከርካሪዎቻችንን እና አገልግሎቶቻችንን ይመልከቱ ወይም ቡድናችንን ያግኙ።",
+    "ኤንኤፍ የመኪና አስመጪ፣ የንጋት ፋናዊ ትሬዲንግ ኃ.የተ.የግ.ማ. የአውቶሞቲቭ ንዑስ ብራንድ — የተሽከርካሪ ማስመጣት እና ሽያጭ፣ የኤሌክትሪክ ተሽከርካሪዎች፣ የመኪና ተጨማሪ ዕቃዎች እና መለዋወጫዎች በአዲስ አበባ፣ ኢትዮጵያ። ተሽከርካሪዎቻችንን እና አገልግሎቶቻችንን ይመልከቱ ወይም ቡድናችንን ያግኙ።",
   url: SITE.url,
 } as const;
 
@@ -49,6 +51,16 @@ export const CONTACT_AM = {
   address: "አዲስ አበባ",
   hours: "ከጠዋቱ 3:00 – ከቀኑ 11:00 ሰዓት",
 } as const;
+
+/** Company information for `locale`. */
+export function getSite(locale: Locale) {
+  return locale === "am" ? SITE_AM : SITE;
+}
+
+/** Contact details for `locale` (phones, email and links are shared). */
+export function getContact(locale: Locale) {
+  return locale === "am" ? CONTACT_AM : CONTACT;
+}
 
 export interface SocialLink {
   label: string;

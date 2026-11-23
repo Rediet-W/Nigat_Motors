@@ -46,6 +46,8 @@ export interface FaqItem {
 }
 
 export interface FaqGroup {
+  /** Stable anchor id, shared across languages. */
+  id: string;
   title: string;
   items: FaqItem[];
 }

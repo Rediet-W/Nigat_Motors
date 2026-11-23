@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/Link";
 import { useState, type CSSProperties } from "react";
 import { ArrowUpRight, Mail, Phone, Plus } from "lucide-react";
-import { CURRENT_SECTOR, GROUP, SECTORS } from "@/constants/nigat-group";
+import { CURRENT_SECTOR, getGroup } from "@/constants/nigat-group";
 import { ROUTES } from "@/constants/routes";
-import { CONTACT } from "@/constants/site";
+import { getContact } from "@/constants/site";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { NavItem, NavLink } from "@/types";
 import { cn } from "@/lib/cn";
 import { formatIndex } from "@/lib/format";
@@ -20,6 +21,7 @@ interface MobileNavToggleProps {
 
 /** Two-line toggle that crosses into an X. */
 export function MobileNavToggle({ open, controls, onToggle }: MobileNavToggleProps) {
+  const { t } = useI18n();
   const line = "absolute left-1/2 h-px w-6 -translate-x-1/2 bg-current transition-all duration-500 ease-drive";
 
   return (
@@ -28,7 +30,7 @@ export function MobileNavToggle({ open, controls, onToggle }: MobileNavTogglePro
       onClick={onToggle}
       aria-expanded={open}
       aria-controls={controls}
-      aria-label={open ? "Close menu" : "Open menu"}
+      aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
       className="relative flex size-11 items-center justify-center border border-line-inverse lg:hidden"
     >
       <span className={cn(line, open ? "top-1/2 rotate-45" : "top-[42%]")} />
@@ -49,6 +51,9 @@ const stagger = (index: number) => ({ animationDelay: `${120 + index * 60}ms` })
 
 /** Full-screen menu (< 1024px) with large numbered links. */
 export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) {
+  const { locale, t } = useI18n();
+  const group = getGroup(locale);
+  const contact = getContact(locale);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
@@ -61,7 +66,7 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
       )}
     >
       <Container className="flex min-h-full flex-col justify-between gap-12 py-10">
-        <nav aria-label="Mobile">
+        <nav aria-label={t.nav.mobileLabel}>
           <ActivePath>
             {(pathname) => (
               <ul>
@@ -93,7 +98,7 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
                             type="button"
                             onClick={() => setExpanded(isExpanded ? null : item.href)}
                             aria-expanded={isExpanded}
-                            aria-label={`${isExpanded ? "Hide" : "Show"} ${item.label}`}
+                            aria-label={isExpanded ? t.nav.hideChildren(item.label) : t.nav.showChildren(item.label)}
                             className="flex size-10 items-center justify-center border border-line-inverse"
                           >
                             <Plus
@@ -128,33 +133,43 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
         </nav>
 
         <div className={cn("space-y-6", open && "animate-rise")} style={stagger(items.length)}>
-          <nav aria-label={GROUP.name}>
-            <p className="type-eyebrow mb-3 text-silver">{GROUP.name}</p>
+          <nav aria-label={group.name}>
+            <p className="type-eyebrow mb-3 text-silver">{group.name}</p>
             <ul className="grid grid-cols-3 gap-px border border-line-inverse bg-line-inverse">
-              {SECTORS.map((sector) => {
+              {group.sectors.map((sector) => {
                 const current = sector.key === CURRENT_SECTOR;
 
                 return (
                   <li key={sector.key} className="bg-ink">
-                    <a
-                      href={current ? ROUTES.home : sector.href}
-                      aria-current={current ? "page" : undefined}
-                      className="type-nav flex min-h-11 items-center justify-center gap-1.5 px-2 py-3 text-center text-silver aria-[current=page]:text-accent"
-                    >
-                      {sector.name.replace(/^Nigat /, "")}
-                      {!current && <ArrowUpRight aria-hidden className="size-3 shrink-0" />}
-                    </a>
+                    {current ? (
+                      <Link
+                        href={ROUTES.home}
+                        onClick={onNavigate}
+                        aria-current="page"
+                        className="type-nav flex min-h-11 items-center justify-center gap-1.5 px-2 py-3 text-center text-accent"
+                      >
+                        {sector.name.replace(/^Nigat /, "")}
+                      </Link>
+                    ) : (
+                      <a
+                        href={sector.href}
+                        className="type-nav flex min-h-11 items-center justify-center gap-1.5 px-2 py-3 text-center text-silver"
+                      >
+                        {sector.name.replace(/^Nigat /, "").replace(/^ንጋት /, "")}
+                        <ArrowUpRight aria-hidden className="size-3 shrink-0" />
+                      </a>
+                    )}
                   </li>
                 );
               })}
             </ul>
           </nav>
           <div className="space-y-3 text-silver">
-            <a href={CONTACT.phoneHref} className="flex items-center gap-3">
-              <Phone aria-hidden className="size-4 text-accent" /> {CONTACT.phone}
+            <a href={contact.phoneHref} className="flex items-center gap-3">
+              <Phone aria-hidden className="size-4 text-accent" /> {contact.phone}
             </a>
-            <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-3 break-all">
-              <Mail aria-hidden className="size-4 text-accent" /> {CONTACT.email}
+            <a href={`mailto:${contact.email}`} className="flex items-center gap-3 break-all">
+              <Mail aria-hidden className="size-4 text-accent" /> {contact.email}
             </a>
           </div>
           <ButtonLink href={cta.href} onClick={onNavigate} className="w-full">

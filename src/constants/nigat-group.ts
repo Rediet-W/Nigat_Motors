@@ -14,6 +14,8 @@
  * │  `.example` domains are reserved PLACEHOLDERS — replace them.        │
  * └──────────────────────────────────────────────────────────────────────┘
  */
+import type { Locale } from "@/i18n/config";
+
 const SECTOR_URLS = {
   construction: "https://nigat-construction.vercel.app/",
   motors: "https://nigat-motors.vercel.app/",
@@ -41,6 +43,20 @@ export const GROUP = {
   nameAm: "ንጋት ግሩፕ",
 } as const;
 
+/** Group and sector names/descriptions in `locale`. */
+export function getGroup(locale: Locale) {
+  const am = locale === "am";
+  return {
+    name: am ? GROUP.nameAm : GROUP.name,
+    sectors: SECTORS.map((sector) => ({
+      key: sector.key,
+      href: sector.href,
+      name: am ? sector.nameAm : sector.name,
+      description: am ? sector.descriptionAm : sector.description,
+    })),
+  };
+}
+
 export const SECTORS: Sector[] = [
   {
     key: "construction",
@@ -53,9 +69,9 @@ export const SECTORS: Sector[] = [
   {
     key: "motors",
     name: "NF Car Importer",
-    nameAm: "ንጋት ሞተርስ",
-    description: "Electric & hybrid vehicles and after-sales support.",
-    descriptionAm: "የኤሌክትሪክ እና ሃይብሪድ ተሽከርካሪዎች እና ከሽያጭ በኋላ ድጋፍ።",
+    nameAm: "ኤንኤፍ የመኪና አስመጪ",
+    description: "Vehicle importing and sales, electric vehicles, accessories and spare parts.",
+    descriptionAm: "የተሽከርካሪ ማስመጣት እና ሽያጭ፣ የኤሌክትሪክ ተሽከርካሪዎች፣ ተጨማሪ ዕቃዎች እና መለዋወጫዎች።",
     href: process.env.NEXT_PUBLIC_MOTORS_URL || SECTOR_URLS.motors,
   },
   {
