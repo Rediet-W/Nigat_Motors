@@ -6,7 +6,7 @@ import { CURRENT_SECTOR, getGroup } from "@/constants/nigat-group";
 import { getContact, getSite, SOCIAL_LINKS } from "@/constants/site";
 import { Link } from "@/i18n/Link";
 import { getI18n } from "@/i18n/server";
-import { Container, Logo } from "@/components/ui";
+import { ChatLinks, Container, Logo } from "@/components/ui";
 import type { NavLink } from "@/types";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -82,21 +82,14 @@ export async function Footer() {
           <div className="lg:col-span-3">
             <h2 className="type-eyebrow mb-6 text-silver">{t.footer.contact}</h2>
             <ul className="space-y-3 text-paper/85">
-              <li>
-                <a
-                  href={contact.phoneHref}
-                  className="transition-colors duration-500 hover:text-accent"
-                >
-                  {contact.phone}
-                </a>
-                {" / "}
-                <a
-                  href={contact.altPhoneHref}
-                  className="transition-colors duration-500 hover:text-accent"
-                >
-                  {contact.altPhone}
-                </a>
-              </li>
+              {contact.phones.map((phone) => (
+                <li key={phone.href}>
+                  <span className="text-silver">{phone.label}: </span>
+                  <a href={phone.href} className="transition-colors duration-500 hover:text-accent">
+                    {phone.number}
+                  </a>
+                </li>
+              ))}
               <li>
                 <a
                   href={`mailto:${contact.email}`}
@@ -108,6 +101,7 @@ export async function Footer() {
               <li className="text-silver">{contact.address}</li>
               <li className="text-silver">{contact.hours}</li>
             </ul>
+            <ChatLinks inverse className="mt-6" />
           </div>
         </Container>
       </div>

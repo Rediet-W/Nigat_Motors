@@ -10,7 +10,12 @@ import type { NavLink } from "@/types";
 interface PageHeroProps {
   title: string;
   eyebrow: string;
-  image: string;
+  /** Background photo. Omit for a plain branded backdrop. */
+  image?: string;
+  /** Short description of the photo (accessibility and SEO). */
+  imageAlt?: string;
+  /** Optional short looping clip; `image` is its poster and the reduced-motion fallback. */
+  video?: string;
   lead?: string;
   /** Crumbs between "Home" and the current page. */
   trail?: NavLink[];
@@ -20,7 +25,7 @@ interface PageHeroProps {
 }
 
 /** Cinematic inner-page opener: full-bleed photo, bottom-aligned display title. */
-export async function PageHero({ title, eyebrow, image, lead, trail = [], size = "tall", children }: PageHeroProps) {
+export async function PageHero({ title, eyebrow, image, imageAlt = "", video, lead, trail = [], size = "tall", children }: PageHeroProps) {
   const { t } = await getI18n();
   const crumbs: NavLink[] = [{ label: t.common.home, href: ROUTES.home }, ...trail];
 
@@ -31,7 +36,24 @@ export async function PageHero({ title, eyebrow, image, lead, trail = [], size =
         size === "tall" ? "min-h-[min(88svh,960px)]" : "min-h-[min(64svh,680px)]",
       )}
     >
-      <Image src={image} alt="" fill priority sizes="100vw" className="-z-20 animate-hero-zoom object-cover" />
+      {image ? (
+        <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="-z-20 animate-hero-zoom object-cover" />
+      ) : (
+        <div aria-hidden className="motion-loop absolute inset-0 -z-20 bg-steel-blue/15" />
+      )}
+      {video && (
+        <video
+          aria-hidden
+          src={video}
+          poster={image}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 -z-20 size-full object-cover motion-reduce:hidden"
+        />
+      )}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(18_38_58/0.55)_0%,rgb(18_38_58/0.15)_35%,rgb(18_38_58/0.9)_100%)]"

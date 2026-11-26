@@ -12,7 +12,11 @@ interface LogoProps {
   className?: string;
 }
 
-/** Official NF mark beside the "Car / Importer" wordmark (logo artwork is not translated). */
+/**
+ * Official NF mark beside the "Car / Importer" wordmark (logo artwork is not
+ * translated). Reads as "NF Car Importer" to screen readers, search engines
+ * and text tools; the hidden "NF" and the space keep the words apart.
+ */
 export function Logo({ className }: LogoProps) {
   const { locale, t } = useI18n();
 
@@ -20,6 +24,7 @@ export function Logo({ className }: LogoProps) {
     <Link
       href={ROUTES.home}
       aria-label={`${getSite(locale).name} — ${t.common.home}`}
+      title={getSite("en").name}
       className={cn(
         "group inline-flex items-center gap-3 text-paper",
         className,
@@ -27,16 +32,16 @@ export function Logo({ className }: LogoProps) {
     >
       <Image
         src={logo}
-        alt=""
-        aria-hidden
+        alt={`${getSite("en").name} logo`}
         fetchPriority="high"
         className="h-9 w-auto shrink-0"
         sizes="64px"
       />
+      <span className="sr-only">NF </span>
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-bold tracking-[0.04em] uppercase [font-variation-settings:'wdth'_125]">
           Car
-        </span>
+        </span>{" "}
         <span className="mt-1 text-[0.625rem] font-bold tracking-[0.42em] text-silver uppercase">
           Importer
         </span>

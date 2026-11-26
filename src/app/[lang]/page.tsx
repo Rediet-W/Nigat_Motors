@@ -1,25 +1,21 @@
-import { ROUTES } from "@/constants/routes";
-import { AboutManifesto, BrandValues, PrinciplesBand } from "@/features/about";
-import { EnquiryCta } from "@/features/contact";
-import { FaqPreview } from "@/features/faqs";
-import { HeroSection } from "@/features/home";
+import { CtaBand } from "@/features/contact";
+import { HeroSection, WhyUs } from "@/features/home";
 import { ServicesIndex } from "@/features/services";
-import { VehicleRail } from "@/features/vehicles";
-import { getI18n } from "@/i18n/server";
+import { FeaturedVehicles } from "@/features/vehicles";
 
-export default async function HomePage() {
-  const { t } = await getI18n();
-
+/**
+ * Home: hero → featured vehicles → services → short "why us" → CTA band.
+ * Kept to 3–4 scrolls; values, FAQs and the full enquiry form live on their
+ * own pages (About, FAQs, Contact).
+ */
+export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <BrandValues />
-      <AboutManifesto index="01" cta={{ label: t.about.moreAboutUs, href: ROUTES.about }} />
-      <VehicleRail index="02" />
-      <ServicesIndex index="03" />
-      <PrinciplesBand index="04" />
-      <FaqPreview index="05" />
-      <EnquiryCta index="06" />
+      <FeaturedVehicles />
+      <ServicesIndex tone="paper" />
+      <WhyUs />
+      <CtaBand showFaqLink />
     </>
   );
 }

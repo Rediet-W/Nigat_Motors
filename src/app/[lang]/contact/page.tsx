@@ -20,6 +20,7 @@ export default async function ContactPage() {
         title={t.contact.hero.title}
         lead={t.contact.hero.lead}
         image="/images/hero-contact.jpg"
+        imageAlt={t.heroAlt.contact}
         size="compact"
       />
       <ContactSection />

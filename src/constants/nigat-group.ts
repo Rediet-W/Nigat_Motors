@@ -57,11 +57,16 @@ export function getGroup(locale: Locale) {
   };
 }
 
+/**
+ * Sector names are used identically in the header switcher, the mobile menu
+ * and the footer. CONFIRM: keep this wording and order the same on all three
+ * Nigat websites (Construction, Car Importer, Exports).
+ */
 export const SECTORS: Sector[] = [
   {
     key: "construction",
     name: "Nigat Fanawi Construction",
-    nameAm: "ንጋት ኮንስትራክሽን",
+    nameAm: "ንጋት ፋናዊ ኮንስትራክሽን",
     description: "Building and construction projects.",
     descriptionAm: "የሕንፃ እና የኮንስትራክሽን ፕሮጀክቶች።",
     href: process.env.NEXT_PUBLIC_CONSTRUCTION_URL || SECTOR_URLS.construction,

@@ -3,7 +3,7 @@ import { ROUTES } from "@/constants/routes";
 import { getContact } from "@/constants/site";
 import { getI18n } from "@/i18n/server";
 import { formatIndex } from "@/lib/format";
-import { ButtonLink, Eyebrow, NumberedSteps, Reveal, Section, SectionHeading } from "@/components/ui";
+import { ButtonLink, Eyebrow, NumberedSteps, Reveal, Section, SectionHeading, SpecList } from "@/components/ui";
 import type { Service } from "@/types";
 import { getServiceProcess } from "../data/services";
 
@@ -44,6 +44,9 @@ export async function ServiceDetail({ service }: { service: Service }) {
                   </li>
                 ))}
               </ol>
+              {service.facts && service.facts.length > 0 && (
+                <SpecList inverse className="mt-8" rows={service.facts} />
+              )}
               <ButtonLink href={ROUTES.enquire(service.slug)} className="mt-10 w-full">
                 {t.services.enquire}
               </ButtonLink>

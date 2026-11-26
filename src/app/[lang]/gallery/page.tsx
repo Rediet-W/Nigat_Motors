@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout";
 import { Section } from "@/components/ui";
+import { SHOW_GALLERY } from "@/constants/features";
 import { ROUTES } from "@/constants/routes";
-import { EnquiryCta } from "@/features/contact";
+import { CtaBand } from "@/features/contact";
 import { GalleryGrid } from "@/features/gallery";
 import { getI18n } from "@/i18n/server";
 import { createMetadata } from "@/lib/metadata";
@@ -13,6 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function GalleryPage() {
+  if (!SHOW_GALLERY) notFound();
   const { t } = await getI18n();
 
   return (
@@ -21,12 +24,13 @@ export default async function GalleryPage() {
         eyebrow={t.gallery.hero.eyebrow}
         title={t.gallery.hero.title}
         image="/images/hero-gallery.jpg"
+        imageAlt={t.heroAlt.gallery}
         size="compact"
       />
       <Section>
         <GalleryGrid />
       </Section>
-      <EnquiryCta />
+      <CtaBand />
     </>
   );
 }

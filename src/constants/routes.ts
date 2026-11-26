@@ -5,6 +5,7 @@ export const ROUTES = {
   services: "/services",
   service: (slug: string) => `/services/${slug}`,
   vehicles: "/vehicles",
+  vehicle: (slug: string) => `/vehicles/${slug}`,
   gallery: "/gallery",
   faqs: "/faqs",
   contact: "/contact",

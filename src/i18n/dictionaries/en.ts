@@ -20,7 +20,7 @@ export const en = {
       vehicles: {
         title: "Vehicles",
         description:
-          "Explore vehicle categories at NF Car Importer — sedans, SUVs, pickups, hatchbacks, crossovers and electric or hybrid vehicles.",
+          "Electric, hybrid and petrol vehicles imported by NF Car Importer — BYD Seagull, Yuan Up, E7, Sea Lion 06, Leopard and Toyota Corolla Cross Hybrid. Filter by body type or powertrain and enquire.",
       },
       gallery: {
         title: "Gallery",
@@ -44,6 +44,34 @@ export const en = {
     home: "Home",
     breadcrumb: "Breadcrumb",
     service: "Service",
+  },
+
+  /** Short descriptions for page hero photos (accessibility and SEO). */
+  heroAlt: {
+    about: "Driver's view of a modern vehicle interior",
+    services: "Vehicle in a workshop during maintenance",
+    vehicles: "New vehicle on the road",
+    gallery: "Vehicles on display",
+    faqs: "Vehicle detail close-up",
+    contact: "Vehicle parked outside, ready for handover",
+  },
+
+  chat: {
+    telegram: "Telegram",
+    whatsapp: "WhatsApp",
+  },
+
+  home: {
+    why: {
+      eyebrow: "Why NF Car Importer",
+      title: "Why buy through us",
+    },
+  },
+
+  ctaBand: {
+    title: "Found the vehicle you want? Talk to our team.",
+    enquire: "Enquire",
+    faqs: "Common questions",
   },
 
   nav: {
@@ -83,9 +111,8 @@ export const en = {
       title: "Confidence in every journey",
       lead: "Connecting people with the vehicles that move them forward.",
     },
-    principles: {
-      eyebrow: "Why NF Car Importer",
-      title: "Confidence drives progress.",
+    story: {
+      eyebrow: "Our story",
     },
     values: {
       eyebrow: "What we stand for",
@@ -113,21 +140,53 @@ export const en = {
     hero: {
       eyebrow: "The Range",
       title: "Vehicles",
-      lead: "Six categories to start from. Tell us which one fits, and we'll help you import the vehicle you want.",
+      lead: "The models we import, led by electric and hybrid. Filter by body type or powertrain, then enquire about the one you want.",
     },
-    rail: {
-      eyebrow: "The Range",
-      title: "Find the vehicle that fits your life",
-      lead: "City runabout, family SUV or a pickup for work — start with the category, and we will source and import the vehicle that meets your needs.",
-      viewAll: "View all categories",
-      label: "Vehicle categories",
+    featured: {
+      eyebrow: "Featured vehicles",
+      title: "Models we import",
+      lead: "Electric and hybrid first: lower running costs and a quieter drive. Every model can be ordered to your preferences.",
+      viewAll: "View all vehicles",
     },
-    jumpTo: "Jump to a category",
-    category: "Vehicle category",
-    idealFor: "Ideal for",
-    availability: "Availability",
-    onEnquiry: "On enquiry",
-    enquireAbout: (name: string) => `Enquire about ${name}`,
+    filters: {
+      label: "Filter vehicles",
+      body: "Body type",
+      powertrain: "Powertrain",
+      all: "All",
+      results: (count: number) => `${count} ${count === 1 ? "model" : "models"}`,
+      empty: "No models match these filters.",
+      reset: "Clear filters",
+    },
+    body: { sedan: "Sedan", suv: "SUV", pickup: "Pickup", hatchback: "Hatchback" },
+    powertrain: { electric: "Electric", hybrid: "Hybrid", petrol: "Petrol" },
+    specs: {
+      year: "Year",
+      body: "Body type",
+      powertrain: "Powertrain",
+      range: "Range",
+      fuelEconomy: "Fuel economy",
+      seats: "Seats",
+      transmission: "Transmission",
+      price: "Price",
+      availability: "Availability",
+    },
+    priceFrom: (amount: string) => `From ETB ${amount}`,
+    priceExact: (amount: string) => `ETB ${amount}`,
+    priceOnRequest: "Price on request",
+    inStock: "Available now",
+    onOrder: "On order",
+    onOrderLead: (lead: string) => `On order · ${lead}`,
+    askAvailability: "Ask for availability",
+    photosSoon: "Photos coming soon",
+    details: "View details",
+    enquire: "Enquire",
+    enquireAbout: (name: string) => `Enquire about the ${name}`,
+    chatMessage: (name: string) => `Hello NF Car Importer, I'm interested in the ${name}.`,
+    chatLead: "Prefer to chat? Message us on Telegram or WhatsApp.",
+    photos: "Photos",
+    photoAlt: (name: string, n: number) => `${name}, photo ${n}`,
+    allVehicles: "All vehicles",
+    otherModels: "Other models",
   },
 
   scrollRail: {
@@ -162,12 +221,6 @@ export const en = {
 
   faqs: {
     hero: { eyebrow: "Help", title: "Questions & answers" },
-    preview: {
-      eyebrow: "Questions",
-      title: "Good to know",
-      lead: "Quick answers about our vehicles, services and how to reach us.",
-      all: "All FAQs",
-    },
     topicsLabel: "FAQ topics",
     topics: "Topics",
     topic: "Topic",
@@ -189,42 +242,45 @@ export const en = {
     hero: {
       eyebrow: "Get in touch",
       title: "Contact",
-      lead: "Call, email or send an enquiry — we're here to help.",
+      lead: "Call, chat on Telegram or WhatsApp, or send an enquiry. We're here to help.",
     },
     directLines: "Direct lines",
     telephone: "Telephone",
     email: "Email",
     showroom: "Showroom",
     hours: "Hours",
+    chat: "Chat",
+    replyTime: "Reply time",
+    landmark: "Landmark",
+    mapTitle: "Map showing the NF Car Importer showroom",
     section: {
       eyebrow: "Send an enquiry",
       title: "How can we help?",
       lead: "Choose a topic and tell us a little about what you need. We'll take it from there.",
     },
-    cta: {
-      eyebrow: "Enquire",
-      title: "Let's bring your vehicle closer",
-      lead: "Tell us what you need — a vehicle to import, an electric model, an accessory or a spare part — and the right person will get back to you.",
-    },
   },
 
   form: {
-    firstName: "First name",
-    lastName: "Last name",
+    name: "Full name",
     email: "Email",
     phone: "Phone",
     topic: "Topic",
     message: "Message",
+    optional: "optional",
+    required: "required",
+    requiredNote: "Fields marked * are required.",
     placeholder: "Tell us what you are looking for…",
-    note: "Submitting opens your email app with the enquiry ready to send.",
+    privacy: "We only use your details to reply to this enquiry.",
     submit: "Send enquiry",
-    success: "Your email app should now open with your enquiry. If it didn't, email us at",
+    sending: "Sending…",
+    success: "Thank you. Your enquiry has been sent and our team will contact you soon.",
+    failure: "Sorry, your enquiry could not be sent. Please call us or message us on Telegram or WhatsApp.",
     generalEnquiry: "General enquiry",
-    vehiclesPrefix: "Vehicles",
+    servicesGroup: "Services",
+    vehiclesGroup: "Vehicles",
     errors: {
-      firstName: "Please enter your first name.",
-      lastName: "Please enter your last name.",
-      email: "Please enter a valid email address.",
+      name: "Please enter your name.",
+      email: "Please enter a valid email address, or leave it empty.",
       phone: "Please enter a valid phone number.",
       message: "Please tell us a little more (at least 10 characters).",
     },

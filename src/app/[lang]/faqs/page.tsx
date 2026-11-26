@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout";
 import { ROUTES } from "@/constants/routes";
-import { EnquiryCta } from "@/features/contact";
+import { CtaBand } from "@/features/contact";
 import { FaqList } from "@/features/faqs";
 import { getI18n } from "@/i18n/server";
 import { createMetadata } from "@/lib/metadata";
@@ -20,10 +20,11 @@ export default async function FaqsPage() {
         eyebrow={t.faqs.hero.eyebrow}
         title={t.faqs.hero.title}
         image="/images/hero-faqs.jpg"
+        imageAlt={t.heroAlt.faqs}
         size="compact"
       />
       <FaqList />
-      <EnquiryCta />
+      <CtaBand />
     </>
   );
 }

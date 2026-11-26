@@ -1,9 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Phone } from "lucide-react";
 import { getNavigation } from "@/constants/navigation";
-import { getContact } from "@/constants/site";
 import { useOverlay } from "@/hooks/useOverlay";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
 import { useLocale } from "@/i18n/LocaleProvider";
@@ -23,7 +21,6 @@ const MOBILE_NAV_ID = "mobile-navigation";
 export function Header() {
   const locale = useLocale();
   const nav = getNavigation(locale);
-  const contact = getContact(locale);
   const { scrolled, hidden } = useScrollHeader();
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
@@ -45,26 +42,15 @@ export function Header() {
         <Container className="flex h-(--header-height) items-center justify-between gap-8">
           <Logo />
           <DesktopNav items={nav.main} />
-          <div className="hidden h-full items-center gap-8 lg:flex">
-            <SectorSwitcher />
-            {/* <a 
-            href={contact.phoneHref}
-            className="type-nav hidden items-center gap-2 text-silver transition-colors hover:text-paper xl:flex"
-          >
-            <Phone aria-hidden className="size-3.5 text-accent" />
-            {contact.phone}
-          </a>*/}
+          {/* One language switcher for every screen size (it used to be rendered twice). */}
+          <div className="flex h-full items-center gap-4 lg:gap-8">
+            <div className="hidden h-full items-center lg:flex">
+              <SectorSwitcher />
+            </div>
             <LanguageSwitcher />
-            <ButtonLink
-              href={nav.cta.href}
-              variant="outline"
-              className="min-h-11 px-5"
-            >
+            <ButtonLink href={nav.cta.href} variant="outline" className="hidden min-h-11 px-5 lg:inline-flex">
               {nav.cta.label}
             </ButtonLink>
-          </div>
-          <div className="flex items-center gap-4 lg:hidden">
-            <LanguageSwitcher />
             <MobileNavToggle
               open={menuOpen}
               controls={MOBILE_NAV_ID}

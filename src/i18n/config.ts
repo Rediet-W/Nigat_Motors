@@ -24,10 +24,15 @@ export function localizePath(locale: Locale, path: string): string {
   return path === "/" ? `/${locale}` : `/${locale}${path}`;
 }
 
-/** Splits a public pathname into its locale and the locale-free path. */
+/**
+ * Splits a pathname into its locale and the locale-free path.
+ * The default locale's internal prefix is stripped too: on prerendered pages
+ * `usePathname()` returns the proxy's rewritten path (`/en/about`), and the
+ * language switcher must still resolve that to `/about`.
+ */
 export function splitLocale(pathname: string): { locale: Locale; path: string } {
   const [, first, ...rest] = pathname.split("/");
-  if (isLocale(first) && first !== DEFAULT_LOCALE) {
+  if (isLocale(first)) {
     return { locale: first, path: `/${rest.join("/")}` };
   }
   return { locale: DEFAULT_LOCALE, path: pathname || "/" };

@@ -73,7 +73,7 @@ export function HeroBackdrop({ slides, duration }: HeroBackdropProps) {
             ) : (
               <Image
                 src={slide.image}
-                alt=""
+                alt={slide.label}
                 fill
                 priority={index === 0}
                 sizes="100vw"

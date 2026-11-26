@@ -56,7 +56,7 @@ export async function ServicesIndex({
                 aria-hidden
                 className="relative hidden h-20 w-0 overflow-hidden transition-[width] duration-700 ease-drive group-hover:w-32 group-focus-visible:w-32 lg:block"
               >
-                <Image src={service.image} alt="" fill sizes="128px" className="object-cover" />
+                <Image src={service.image} alt={service.title} fill sizes="128px" className="object-cover" />
               </span>
 
               <span className="type-h2 col-span-2 transition-colors lg:col-span-1 duration-500 group-hover:text-accent">{service.title}</span>

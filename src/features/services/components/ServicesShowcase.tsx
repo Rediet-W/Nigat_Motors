@@ -21,11 +21,13 @@ export async function ServicesShowcase() {
           return (
             <article key={service.slug} className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-10">
               <Reveal variant="mask" className={cn("lg:col-span-6", reversed && "lg:order-2 lg:col-start-7")}>
-                <Link href={href} tabIndex={-1} aria-hidden className="group block">
+                {/* Out of the tab order (the title links to the same page), but with real alt
+                    text so the link never surfaces as its raw URL. */}
+                <Link href={href} tabIndex={-1} className="group block">
                   <figure className="photo-zoom relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={service.image}
-                      alt=""
+                      alt={service.title}
                       fill
                       sizes="(min-width: 1024px) 50vw, 100vw"
                       className="object-cover"

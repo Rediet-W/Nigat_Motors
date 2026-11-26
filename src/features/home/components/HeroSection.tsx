@@ -29,7 +29,8 @@ export async function HeroSection() {
               <span className="block animate-rise [animation-delay:120ms]">
                 {t.hero.lineOne}
               </span>
-            </span>
+            </span>{" "}
+            {/* The space keeps the two lines as separate words ("Drive The Future") for search engines and screen readers. */}
             <span className="block overflow-hidden pb-[0.04em]">
               <span className="block animate-rise [animation-delay:240ms]">
                 {t.hero.lineTwo}<span className="text-accent">.</span>

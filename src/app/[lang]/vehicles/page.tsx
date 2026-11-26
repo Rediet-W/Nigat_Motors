@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout";
+import { Section } from "@/components/ui";
 import { ROUTES } from "@/constants/routes";
-import { EnquiryCta } from "@/features/contact";
-import { VehicleShowcase } from "@/features/vehicles";
+import { CtaBand } from "@/features/contact";
+import { getVehicles, VehicleListing } from "@/features/vehicles";
 import { getI18n } from "@/i18n/server";
 import { createMetadata } from "@/lib/metadata";
 
@@ -21,9 +22,13 @@ export default async function VehiclesPage() {
         title={t.vehicles.hero.title}
         lead={t.vehicles.hero.lead}
         image="/images/hero-vehicles.jpg"
+        imageAlt={t.heroAlt.vehicles}
+        size="compact"
       />
-      <VehicleShowcase />
-      <EnquiryCta />
+      <Section>
+        <VehicleListing vehicles={getVehicles()} />
+      </Section>
+      <CtaBand />
     </>
   );
 }

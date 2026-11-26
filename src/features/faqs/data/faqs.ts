@@ -2,14 +2,31 @@ import type { Locale } from "@/i18n/config";
 import type { FaqGroup } from "@/types";
 
 /**
- * PLACEHOLDER CONTENT — answers describe how to use this website and the
- * enquiry process only. Confirm policies (pricing, financing, warranties,
- * opening hours) with NF Car Importer before adding them (README → "Content to confirm").
+ * FAQ content. `id` is the stable anchor for each group (the same in every
+ * language).
  *
- * `id` is the stable anchor for each group (the same in every language).
+ * "Buying, payment & delivery" holds the questions buyers ask most. Their
+ * answers MUST come from Nigat's sales team: an item whose `answer` is
+ * `null` is hidden on the site, and a group with no answered items is hidden
+ * too. CONFIRM each answer with concrete timeframes, steps, documents and
+ * response times.
  */
-const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
+type DraftFaqGroup = Omit<FaqGroup, "items"> & { items: { question: string; answer: string | null }[] };
+
+const FAQ_GROUPS: Record<Locale, DraftFaqGroup[]> = {
   en: [
+    {
+      id: "buying",
+      title: "Buying, payment & delivery",
+      items: [
+        { question: "How much does a vehicle cost?", answer: null },
+        { question: "How do I pay: deposit, bank transfer or financing?", answer: null },
+        { question: "Are customs duty and taxes included in the price?", answer: null },
+        { question: "How long does importing a vehicle take?", answer: null },
+        { question: "What warranty do I get?", answer: null },
+        { question: "Where can I see the car before buying?", answer: null },
+      ],
+    },
     {
       id: "vehicles",
       title: "Vehicles",
@@ -22,12 +39,12 @@ const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
         {
           question: "How can I find out which vehicles are available?",
           answer:
-            "Browse our vehicle categories, then send an enquiry for the type you are interested in. Our team will reply with current availability and details.",
+            "Browse the Vehicles page: each model shows its price and availability where confirmed. For anything else, call us, message us on Telegram or WhatsApp, or send an enquiry about the model.",
         },
         {
           question: "Can you help me choose between vehicle types?",
           answer:
-            "Yes. Tell us how you plan to use the vehicle — commuting, family travel or work — and we will talk you through the categories that suit you best.",
+            "Yes. Tell us how you plan to use the vehicle — commuting, family travel or work — and we will talk you through the models that suit you best.",
         },
         {
           question: "Can I arrange to see a vehicle in person?",
@@ -59,7 +76,7 @@ const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
         {
           question: "What is the best way to contact NF Car Importer?",
           answer:
-            "Use the enquiry form on our contact page, call us, or send an email. Including your vehicle details or what you are looking for helps us respond faster.",
+            "Call us, message us on Telegram or WhatsApp, or use the enquiry form on our contact page. Including the model or part you are looking for helps us respond faster.",
         },
         {
           question: "What happens after I send an enquiry?",
@@ -70,6 +87,18 @@ const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
     },
   ],
   am: [
+    {
+      id: "buying",
+      title: "ግዢ፣ ክፍያ እና ርክክብ",
+      items: [
+        { question: "የተሽከርካሪ ዋጋ ስንት ነው?", answer: null },
+        { question: "እንዴት እከፍላለሁ፦ ቅድመ ክፍያ፣ የባንክ ዝውውር ወይስ ብድር?", answer: null },
+        { question: "የጉምሩክ ቀረጥ እና ታክስ በዋጋው ውስጥ ተካትቷል?", answer: null },
+        { question: "ተሽከርካሪ ለማስመጣት ምን ያህል ጊዜ ይወስዳል?", answer: null },
+        { question: "ምን ዓይነት ዋስትና አገኛለሁ?", answer: null },
+        { question: "ከመግዛቴ በፊት መኪናውን የት ማየት እችላለሁ?", answer: null },
+      ],
+    },
     {
       id: "vehicles",
       title: "ተሽከርካሪዎች",
@@ -82,12 +111,12 @@ const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
         {
           question: "የትኞቹ ተሽከርካሪዎች እንዳሉ እንዴት ማወቅ እችላለሁ?",
           answer:
-            "የተሽከርካሪ ዓይነቶቻችንን ይመልከቱ፤ ከዚያም ለሚፈልጉት ዓይነት ጥያቄ ይላኩ። ቡድናችን በአሁኑ ጊዜ ያሉትን እና ዝርዝር መረጃዎችን ይዞ ምላሽ ይሰጥዎታል።",
+            "የተሽከርካሪዎች ገጽን ይመልከቱ፤ እያንዳንዱ ሞዴል የተረጋገጠ ዋጋ እና ተገኝነት ካለ ያሳያል። ለሌላ ማንኛውም ጥያቄ ይደውሉልን፣ በቴሌግራም ወይም በዋትስአፕ ይጻፉልን፣ ወይም ስለ ሞዴሉ ጥያቄ ይላኩ።",
         },
         {
           question: "ከተሽከርካሪ ዓይነቶች መካከል እንድመርጥ ልትረዱኝ ትችላላችሁ?",
           answer:
-            "አዎ። ተሽከርካሪውን እንዴት ለመጠቀም እንዳሰቡ ይንገሩን — ለዕለት ጉዞ፣ ለቤተሰብ ወይም ለሥራ — የሚስማሙዎትን ዓይነቶች እናስረዳዎታለን።",
+            "አዎ። ተሽከርካሪውን እንዴት ለመጠቀም እንዳሰቡ ይንገሩን — ለዕለት ጉዞ፣ ለቤተሰብ ወይም ለሥራ — የሚስማሙዎትን ሞዴሎች እናስረዳዎታለን።",
         },
         {
           question: "ተሽከርካሪውን በአካል ማየት እችላለሁ?",
@@ -118,7 +147,7 @@ const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
         {
           question: "ኤንኤፍ የመኪና አስመጪን ለማግኘት የተሻለው መንገድ ምንድነው?",
           answer:
-            "በአድራሻ ገጻችን ያለውን የጥያቄ ቅጽ ይጠቀሙ፣ ይደውሉልን ወይም ኢሜይል ይላኩ። የተሽከርካሪዎን ዝርዝር ወይም የሚፈልጉትን ማካተት በፍጥነት ምላሽ እንድንሰጥ ይረዳናል።",
+            "ይደውሉልን፣ በቴሌግራም ወይም በዋትስአፕ ይጻፉልን፣ ወይም በአድራሻ ገጻችን ያለውን የጥያቄ ቅጽ ይጠቀሙ። የሚፈልጉትን ሞዴል ወይም መለዋወጫ ማካተት በፍጥነት ምላሽ እንድንሰጥ ይረዳናል።",
         },
         {
           question: "ጥያቄ ከላክሁ በኋላ ምን ይሆናል?",
@@ -129,11 +158,12 @@ const FAQ_GROUPS: Record<Locale, FaqGroup[]> = {
   ],
 };
 
+/** Groups with answered questions only; unanswered drafts stay hidden. */
 export function getFaqGroups(locale: Locale): FaqGroup[] {
-  return FAQ_GROUPS[locale];
-}
-
-/** A short selection used in the FAQ previews. */
-export function getFeaturedFaqs(locale: Locale) {
-  return FAQ_GROUPS[locale].flatMap((group) => group.items).slice(0, 5);
+  return FAQ_GROUPS[locale]
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item): item is { question: string; answer: string } => item.answer !== null),
+    }))
+    .filter((group) => group.items.length > 0);
 }

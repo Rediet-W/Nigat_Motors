@@ -23,7 +23,7 @@ export const am: Dictionary = {
       vehicles: {
         title: "ተሽከርካሪዎች",
         description:
-          "በኤንኤፍ የመኪና አስመጪ ያሉ የተሽከርካሪ ዓይነቶችን ይመልከቱ — ሴዳን፣ SUV፣ ፒካፕ፣ ሃችባክ፣ ክሮስኦቨር እና የኤሌክትሪክ ወይም ሃይብሪድ ተሽከርካሪዎች።",
+          "በኤንኤፍ የመኪና አስመጪ የሚመጡ የኤሌክትሪክ፣ ሃይብሪድ እና ቤንዚን ተሽከርካሪዎች — BYD Seagull፣ Yuan Up፣ E7፣ Sea Lion 06፣ Leopard እና Toyota Corolla Cross Hybrid። በዓይነት ወይም በኃይል ምንጭ ይለዩ እና ይጠይቁ።",
       },
       gallery: {
         title: "የምስል ማዕከል",
@@ -47,6 +47,33 @@ export const am: Dictionary = {
     home: "መነሻ",
     breadcrumb: "የገጽ መንገድ",
     service: "አገልግሎት",
+  },
+
+  heroAlt: {
+    about: "የዘመናዊ ተሽከርካሪ ውስጣዊ ክፍል ከአሽከርካሪው እይታ",
+    services: "በጋራዥ ውስጥ ጥገና እየተደረገለት ያለ ተሽከርካሪ",
+    vehicles: "መንገድ ላይ ያለ አዲስ ተሽከርካሪ",
+    gallery: "ለእይታ የቀረቡ ተሽከርካሪዎች",
+    faqs: "የተሽከርካሪ ዝርዝር በቅርበት",
+    contact: "ለርክክብ ዝግጁ ሆኖ የቆመ ተሽከርካሪ",
+  },
+
+  chat: {
+    telegram: "ቴሌግራም",
+    whatsapp: "ዋትስአፕ",
+  },
+
+  home: {
+    why: {
+      eyebrow: "ለምን ኤንኤፍ የመኪና አስመጪ",
+      title: "ለምን በእኛ በኩል ይግዙ",
+    },
+  },
+
+  ctaBand: {
+    title: "የሚፈልጉትን ተሽከርካሪ አገኙ? ቡድናችንን ያነጋግሩ።",
+    enquire: "ይጠይቁ",
+    faqs: "የተለመዱ ጥያቄዎች",
   },
 
   nav: {
@@ -86,9 +113,8 @@ export const am: Dictionary = {
       title: "በእያንዳንዱ ጉዞ በራስ መተማመን",
       lead: "ሰዎችን ወደፊት ከሚያራምዷቸው ተሽከርካሪዎች ጋር እናገናኛለን።",
     },
-    principles: {
-      eyebrow: "ለምን ኤንኤፍ የመኪና አስመጪ",
-      title: "በራስ መተማመን ዕድገትን ያንቀሳቅሳል።",
+    story: {
+      eyebrow: "ታሪካችን",
     },
     values: {
       eyebrow: "የምንቆምለት",
@@ -116,21 +142,53 @@ export const am: Dictionary = {
     hero: {
       eyebrow: "ምርጫዎቻችን",
       title: "ተሽከርካሪዎች",
-      lead: "ለመጀመር ስድስት ዓይነቶች። የሚስማማዎትን ይንገሩን፤ የሚፈልጉትን ተሽከርካሪ ለማስመጣት እንረዳዎታለን።",
+      lead: "የምናስመጣቸው ሞዴሎች፣ በኤሌክትሪክ እና ሃይብሪድ የሚመሩ። በዓይነት ወይም በኃይል ምንጭ ይለዩ፤ ከዚያም ስለሚፈልጉት ይጠይቁ።",
     },
-    rail: {
-      eyebrow: "ምርጫዎቻችን",
-      title: "ለሕይወትዎ የሚስማማውን ተሽከርካሪ ያግኙ",
-      lead: "ለከተማ የምትሆን ትንሽ መኪና፣ የቤተሰብ SUV ወይም ለሥራ የሚሆን ፒካፕ — በዓይነቱ ይጀምሩ፤ ፍላጎትዎን የሚያሟላውን ተሽከርካሪ እናፈላልጋለን፣ እናስመጣለን።",
-      viewAll: "ሁሉንም ዓይነቶች ይመልከቱ",
-      label: "የተሽከርካሪ ዓይነቶች",
+    featured: {
+      eyebrow: "ተለይተው የቀረቡ ተሽከርካሪዎች",
+      title: "የምናስመጣቸው ሞዴሎች",
+      lead: "ኤሌክትሪክ እና ሃይብሪድ ቅድሚያ፦ ዝቅተኛ የማንቀሳቀሻ ወጪ እና ጸጥ ያለ ጉዞ። እያንዳንዱ ሞዴል እንደ ምርጫዎ ሊታዘዝ ይችላል።",
+      viewAll: "ሁሉንም ተሽከርካሪዎች ይመልከቱ",
     },
-    jumpTo: "ወደ ዓይነት ይሂዱ",
-    category: "የተሽከርካሪ ዓይነት",
-    idealFor: "ተስማሚ ለ",
-    availability: "ተገኝነት",
-    onEnquiry: "በጥያቄ",
+    filters: {
+      label: "ተሽከርካሪዎችን ይለዩ",
+      body: "የአካል ዓይነት",
+      powertrain: "የኃይል ምንጭ",
+      all: "ሁሉም",
+      results: (count: number) => `${count} ሞዴሎች`,
+      empty: "ከእነዚህ ምርጫዎች ጋር የሚዛመድ ሞዴል የለም።",
+      reset: "ምርጫዎችን አጽዳ",
+    },
+    body: { sedan: "ሴዳን", suv: "SUV", pickup: "ፒካፕ", hatchback: "ሃችባክ" },
+    powertrain: { electric: "ኤሌክትሪክ", hybrid: "ሃይብሪድ", petrol: "ቤንዚን" },
+    specs: {
+      year: "ዓመት",
+      body: "የአካል ዓይነት",
+      powertrain: "የኃይል ምንጭ",
+      range: "የጉዞ ርቀት",
+      fuelEconomy: "የነዳጅ ፍጆታ",
+      seats: "መቀመጫዎች",
+      transmission: "ማርሽ",
+      price: "ዋጋ",
+      availability: "ተገኝነት",
+    },
+    priceFrom: (amount: string) => `ከ ${amount} ብር ጀምሮ`,
+    priceExact: (amount: string) => `${amount} ብር`,
+    priceOnRequest: "ዋጋ በጥያቄ",
+    inStock: "አሁን ይገኛል",
+    onOrder: "በትዕዛዝ",
+    onOrderLead: (lead: string) => `በትዕዛዝ · ${lead}`,
+    askAvailability: "ስለ ተገኝነት ይጠይቁ",
+    photosSoon: "ፎቶዎች በቅርቡ",
+    details: "ዝርዝር ይመልከቱ",
+    enquire: "ይጠይቁ",
     enquireAbout: (name: string) => `ስለ ${name} ይጠይቁ`,
+    chatMessage: (name: string) => `ሰላም ኤንኤፍ የመኪና አስመጪ፣ ስለ ${name} ማወቅ እፈልጋለሁ።`,
+    chatLead: "መወያየት ይመርጣሉ? በቴሌግራም ወይም በዋትስአፕ መልእክት ይላኩልን።",
+    photos: "ፎቶዎች",
+    photoAlt: (name: string, n: number) => `${name}፣ ፎቶ ${n}`,
+    allVehicles: "ሁሉም ተሽከርካሪዎች",
+    otherModels: "ሌሎች ሞዴሎች",
   },
 
   scrollRail: {
@@ -165,12 +223,6 @@ export const am: Dictionary = {
 
   faqs: {
     hero: { eyebrow: "እገዛ", title: "ጥያቄዎች እና መልሶች" },
-    preview: {
-      eyebrow: "ጥያቄዎች",
-      title: "ማወቅ ያለብዎት",
-      lead: "ስለ ተሽከርካሪዎቻችን፣ አገልግሎቶቻችን እና እኛን እንዴት እንደሚያገኙ አጭር መልሶች።",
-      all: "ሁሉም ጥያቄዎች",
-    },
     topicsLabel: "የጥያቄ ርዕሶች",
     topics: "ርዕሶች",
     topic: "ርዕስ",
@@ -192,42 +244,45 @@ export const am: Dictionary = {
     hero: {
       eyebrow: "ከእኛ ጋር ይገናኙ",
       title: "ያግኙን",
-      lead: "ይደውሉ፣ ኢሜይል ይላኩ ወይም ጥያቄ ይላኩ — ለመርዳት ዝግጁ ነን።",
+      lead: "ይደውሉ፣ በቴሌግራም ወይም በዋትስአፕ ይጻፉልን፣ ወይም ጥያቄ ይላኩ። ለመርዳት ዝግጁ ነን።",
     },
     directLines: "ቀጥተኛ መስመሮች",
     telephone: "ስልክ",
     email: "ኢሜይል",
     showroom: "ማሳያ ክፍል",
     hours: "የሥራ ሰዓት",
+    chat: "ውይይት",
+    replyTime: "የምላሽ ጊዜ",
+    landmark: "መለያ ቦታ",
+    mapTitle: "የኤንኤፍ የመኪና አስመጪ ማሳያ ክፍል የሚያሳይ ካርታ",
     section: {
       eyebrow: "ጥያቄ ይላኩ",
       title: "እንዴት ልንረዳዎ እንችላለን?",
       lead: "ርዕስ ይምረጡ እና ስለሚፈልጉት በአጭሩ ይንገሩን። ቀሪውን እኛ እንከታተላለን።",
     },
-    cta: {
-      eyebrow: "ይጠይቁ",
-      title: "ተሽከርካሪዎን እናቅርብልዎ",
-      lead: "የሚፈልጉትን ይንገሩን — የሚመጣ ተሽከርካሪ፣ የኤሌክትሪክ ሞዴል፣ ተጨማሪ ዕቃ ወይም መለዋወጫ — የሚመለከተው ባለሙያ ያነጋግርዎታል።",
-    },
   },
 
   form: {
-    firstName: "ስም",
-    lastName: "የአባት ስም",
+    name: "ሙሉ ስም",
     email: "ኢሜይል",
     phone: "ስልክ",
     topic: "ርዕስ",
     message: "መልእክት",
+    optional: "አማራጭ",
+    required: "ግዴታ",
+    requiredNote: "* ምልክት ያላቸው መስኮች ግዴታ ናቸው።",
     placeholder: "የሚፈልጉትን ይንገሩን…",
-    note: "ሲልኩ ጥያቄዎ ለመላክ ተዘጋጅቶ የኢሜይል መተግበሪያዎ ይከፈታል።",
+    privacy: "መረጃዎን የምንጠቀመው ለዚህ ጥያቄ ምላሽ ለመስጠት ብቻ ነው።",
     submit: "ጥያቄ ይላኩ",
-    success: "የኢሜይል መተግበሪያዎ አሁን ከጥያቄዎ ጋር መከፈት አለበት። ካልተከፈተ በዚህ አድራሻ ኢሜይል ይላኩልን፦",
+    sending: "በመላክ ላይ…",
+    success: "እናመሰግናለን። ጥያቄዎ ተልኳል፤ ቡድናችን በቅርቡ ያነጋግርዎታል።",
+    failure: "ይቅርታ፣ ጥያቄዎ መላክ አልተቻለም። እባክዎ ይደውሉልን ወይም በቴሌግራም ወይም በዋትስአፕ ይጻፉልን።",
     generalEnquiry: "አጠቃላይ ጥያቄ",
-    vehiclesPrefix: "ተሽከርካሪዎች",
+    servicesGroup: "አገልግሎቶች",
+    vehiclesGroup: "ተሽከርካሪዎች",
     errors: {
-      firstName: "እባክዎ ስምዎን ያስገቡ።",
-      lastName: "እባክዎ የአባትዎን ስም ያስገቡ።",
-      email: "እባክዎ ትክክለኛ የኢሜይል አድራሻ ያስገቡ።",
+      name: "እባክዎ ስምዎን ያስገቡ።",
+      email: "እባክዎ ትክክለኛ የኢሜይል አድራሻ ያስገቡ ወይም ባዶ ይተዉት።",
       phone: "እባክዎ ትክክለኛ ስልክ ቁጥር ያስገቡ።",
       message: "እባክዎ ትንሽ ተጨማሪ ይንገሩን (ቢያንስ 10 ፊደላት)።",
     },

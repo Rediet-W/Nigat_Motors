@@ -1,5 +1,6 @@
 export { Accordion } from "./Accordion";
 export { Button, ButtonLink } from "./Button";
+export { ChatLinks } from "./ChatLinks";
 export type { ButtonVariant } from "./Button";
 export { Container } from "./Container";
 export { Eyebrow } from "./Eyebrow";

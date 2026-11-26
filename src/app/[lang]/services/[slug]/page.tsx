@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout";
 import { ROUTES } from "@/constants/routes";
-import { EnquiryCta } from "@/features/contact";
+import { CtaBand } from "@/features/contact";
 import { getServiceBySlug, SERVICES, ServiceDetail, ServicesIndex } from "@/features/services";
 import { getI18n } from "@/i18n/server";
 import { createMetadata } from "@/lib/metadata";
@@ -42,6 +42,8 @@ export default async function ServicePage({ params }: PageProps<"/[lang]/service
         title={service.title}
         lead={service.excerpt}
         image={service.image}
+        imageAlt={service.title}
+        size="compact"
         trail={[{ label: t.nav.services, href: ROUTES.services }]}
       />
       <ServiceDetail service={service} />
@@ -50,7 +52,7 @@ export default async function ServicePage({ params }: PageProps<"/[lang]/service
         title={t.services.index.moreTitle}
         excludeSlug={service.slug}
       />
-      <EnquiryCta />
+      <CtaBand interest={service.slug} />
     </>
   );
 }

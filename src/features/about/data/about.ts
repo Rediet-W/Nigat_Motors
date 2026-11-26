@@ -7,16 +7,24 @@ import type { Feature } from "@/types";
  * figures, founding year or awards (README → "Content to confirm").
  */
 
-/** A brand topic shown in the About split section, each with its own photo. */
-export interface AboutTopic extends Feature {
-  image: string;
-  imageAlt: string;
+/**
+ * A dated step in Nigat's story, shown as the About timeline.
+ * CONFIRM: fill in from Nigat management (when and why the business started,
+ * first imports, milestones). Add a real photo where one exists.
+ */
+export interface Milestone {
+  year: string;
+  title: string;
+  description: string;
+  image?: { src: string; alt: string };
 }
 
 interface AboutContent {
   intro: { title: string; lead: string };
-  topics: AboutTopic[];
-  principles: Feature[];
+  /** What the business does, in three short statements (shown in "Our story"). */
+  topics: Feature[];
+  /** Timeline. Hidden while empty. */
+  milestones: Milestone[];
   approachSteps: Feature[];
   /** Brand keywords (guideline: Discovery & Research → KeyWords). */
   keywords: string[];
@@ -27,12 +35,6 @@ interface AboutContent {
   /** Meaning of the name and the logo concept (guideline: Brand Personality, Brand Logo). */
   name: { title: string; paragraphs: string[]; marks: { label: string; value: string }[] };
 }
-
-const TOPIC_IMAGES = [
-  "/images/editorial-interior.jpg",
-  "/images/service-maintenance.jpg",
-  "/images/gallery-11.jpg",
-] as const;
 
 const ABOUT: Record<Locale, AboutContent> = {
   en: {
@@ -45,37 +47,18 @@ const ABOUT: Record<Locale, AboutContent> = {
         title: "Customer focused",
         description:
           "Every import starts with your needs and preferences, so the vehicle we source is the one you want.",
-        image: TOPIC_IMAGES[0],
-        imageAlt: "Driver's view of a modern vehicle cockpit and touchscreen",
       },
       {
         title: "Reliability",
         description: "Quality vehicles and dependable service that let you move forward with confidence.",
-        image: TOPIC_IMAGES[1],
-        imageAlt: "Vehicle in a workshop during routine maintenance",
       },
       {
         title: "A lasting partnership",
         description:
           "Our relationship extends beyond the point of purchase, supporting you throughout your automotive journey.",
-        image: TOPIC_IMAGES[2],
-        imageAlt: "Black estate car parked in an open field",
       },
     ],
-    principles: [
-      {
-        title: "Transparency",
-        description: "Straightforward communication at every step, so you always know where your vehicle stands.",
-      },
-      {
-        title: "Precision",
-        description: "Care and attention to detail in every vehicle we source and every service we deliver.",
-      },
-      {
-        title: "Partnership",
-        description: "A trusted automotive partner, here for you long after your vehicle arrives.",
-      },
-    ],
+    milestones: [],
     approachSteps: [
       {
         title: "Understand",
@@ -119,36 +102,17 @@ const ABOUT: Record<Locale, AboutContent> = {
       {
         title: "ደንበኛ ተኮር",
         description: "እያንዳንዱ ማስመጣት በፍላጎትዎ እና በምርጫዎ ይጀምራል፤ የምናፈላልገው ተሽከርካሪ እርስዎ የሚፈልጉት ነው።",
-        image: TOPIC_IMAGES[0],
-        imageAlt: "የዘመናዊ ተሽከርካሪ የአሽከርካሪ ክፍል እና ንክኪ ማያ",
       },
       {
         title: "አስተማማኝነት",
         description: "በራስ መተማመን ወደፊት እንዲራመዱ የሚያስችሉ ጥራት ያላቸው ተሽከርካሪዎች እና አስተማማኝ አገልግሎት።",
-        image: TOPIC_IMAGES[1],
-        imageAlt: "በጋራዥ ውስጥ መደበኛ ጥገና እየተደረገለት ያለ ተሽከርካሪ",
       },
       {
         title: "ዘላቂ አጋርነት",
         description: "ግንኙነታችን ከግዢው በኋላም ይቀጥላል፤ በአውቶሞቲቭ ጉዞዎ ሁሉ እንደግፍዎታለን።",
-        image: TOPIC_IMAGES[2],
-        imageAlt: "በሜዳ ላይ የቆመ ጥቁር መኪና",
       },
     ],
-    principles: [
-      {
-        title: "ግልጽነት",
-        description: "በእያንዳንዱ ደረጃ ግልጽ ግንኙነት፤ ተሽከርካሪዎ የት እንደደረሰ ሁልጊዜ ያውቃሉ።",
-      },
-      {
-        title: "ትክክለኛነት",
-        description: "በምናፈላልገው እያንዳንዱ ተሽከርካሪ እና በምንሰጠው እያንዳንዱ አገልግሎት ጥንቃቄ እና ለዝርዝር ትኩረት።",
-      },
-      {
-        title: "አጋርነት",
-        description: "ተሽከርካሪዎ ከደረሰ በኋላም ከጎንዎ የሚቆም ታማኝ የአውቶሞቲቭ አጋር።",
-      },
-    ],
+    milestones: [],
     approachSteps: [
       {
         title: "መረዳት",

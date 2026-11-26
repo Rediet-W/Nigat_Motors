@@ -2,15 +2,14 @@
 
 import { Link } from "@/i18n/Link";
 import { useState, type CSSProperties } from "react";
-import { ArrowUpRight, Mail, Phone, Plus } from "lucide-react";
+import { ArrowUpRight, Phone, Plus } from "lucide-react";
 import { CURRENT_SECTOR, getGroup } from "@/constants/nigat-group";
 import { ROUTES } from "@/constants/routes";
 import { getContact } from "@/constants/site";
 import { useI18n } from "@/i18n/LocaleProvider";
 import type { NavItem, NavLink } from "@/types";
 import { cn } from "@/lib/cn";
-import { formatIndex } from "@/lib/format";
-import { ButtonLink, Container } from "@/components/ui";
+import { ButtonLink, ChatLinks, Container } from "@/components/ui";
 import { ActivePath, isActivePath } from "./ActivePath";
 
 interface MobileNavToggleProps {
@@ -49,12 +48,17 @@ interface MobileNavProps {
 
 const stagger = (index: number) => ({ animationDelay: `${120 + index * 60}ms` }) as CSSProperties;
 
-/** Full-screen menu (< 1024px) with large numbered links. */
+/**
+ * Full-screen menu (< 1024px) with large links. Its contents mount the first
+ * time the menu opens, so the page markup carries the main navigation once.
+ */
 export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) {
   const { locale, t } = useI18n();
   const group = getGroup(locale);
   const contact = getContact(locale);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  if (open && !mounted) setMounted(true);
 
   return (
     <div
@@ -65,6 +69,7 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
         open ? "visible opacity-100" : "invisible opacity-0",
       )}
     >
+      {mounted && (
       <Container className="flex min-h-full flex-col justify-between gap-12 py-10">
         <nav aria-label={t.nav.mobileLabel}>
           <ActivePath>
@@ -81,7 +86,6 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
                       style={stagger(index)}
                     >
                       <div className="flex items-center gap-4">
-                        <span className="type-number w-7 text-xs text-accent">{formatIndex(index)}</span>
                         <Link
                           href={item.href}
                           onClick={onNavigate}
@@ -109,7 +113,7 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
                         )}
                       </div>
                       {item.children && isExpanded && (
-                        <ul className="pb-5 pl-11">
+                        <ul className="pb-5 pl-4">
                           {item.children.map((child) => (
                             <li key={child.href}>
                               <Link
@@ -135,28 +139,22 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
         <div className={cn("space-y-6", open && "animate-rise")} style={stagger(items.length)}>
           <nav aria-label={group.name}>
             <p className="type-eyebrow mb-3 text-silver">{group.name}</p>
-            <ul className="grid grid-cols-3 gap-px border border-line-inverse bg-line-inverse">
+            <ul className="border-t border-line-inverse">
               {group.sectors.map((sector) => {
                 const current = sector.key === CURRENT_SECTOR;
+                const itemClass = "type-nav flex min-h-11 items-center justify-between gap-3 border-b border-line-inverse py-3";
 
                 return (
-                  <li key={sector.key} className="bg-ink">
+                  <li key={sector.key}>
                     {current ? (
-                      <Link
-                        href={ROUTES.home}
-                        onClick={onNavigate}
-                        aria-current="page"
-                        className="type-nav flex min-h-11 items-center justify-center gap-1.5 px-2 py-3 text-center text-accent"
-                      >
-                        {sector.name.replace(/^Nigat /, "")}
+                      <Link href={ROUTES.home} onClick={onNavigate} aria-current="page" className={cn(itemClass, "text-accent")}>
+                        {sector.name}
+                        <span className="type-eyebrow">{t.nav.youAreHere}</span>
                       </Link>
                     ) : (
-                      <a
-                        href={sector.href}
-                        className="type-nav flex min-h-11 items-center justify-center gap-1.5 px-2 py-3 text-center text-silver"
-                      >
-                        {sector.name.replace(/^Nigat /, "").replace(/^ንጋት /, "")}
-                        <ArrowUpRight aria-hidden className="size-3 shrink-0" />
+                      <a href={sector.href} className={cn(itemClass, "text-silver")}>
+                        {sector.name}
+                        <ArrowUpRight aria-hidden className="size-4 shrink-0" />
                       </a>
                     )}
                   </li>
@@ -164,19 +162,16 @@ export function MobileNav({ id, open, items, cta, onNavigate }: MobileNavProps) 
               })}
             </ul>
           </nav>
-          <div className="space-y-3 text-silver">
-            <a href={contact.phoneHref} className="flex items-center gap-3">
-              <Phone aria-hidden className="size-4 text-accent" /> {contact.phone}
-            </a>
-            <a href={`mailto:${contact.email}`} className="flex items-center gap-3 break-all">
-              <Mail aria-hidden className="size-4 text-accent" /> {contact.email}
-            </a>
-          </div>
+          <a href={contact.phoneHref} className="flex items-center gap-3 text-silver">
+            <Phone aria-hidden className="size-4 text-accent" /> {contact.phone}
+          </a>
+          <ChatLinks inverse />
           <ButtonLink href={cta.href} onClick={onNavigate} className="w-full">
             {cta.label}
           </ButtonLink>
         </div>
       </Container>
+      )}
     </div>
   );
 }

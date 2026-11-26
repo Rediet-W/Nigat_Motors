@@ -25,14 +25,12 @@ export interface Service {
   excerpt: string;
   overview: string[];
   highlights: string[];
-}
-
-export interface VehicleCategory {
-  slug: string;
-  name: string;
-  image: string;
-  description: string;
-  idealFor: string;
+  /**
+   * CONFIRM: concrete details from Nigat, shown as a spec sheet on the
+   * service page, e.g. { label: "Typical timeline", value: "6–10 weeks" },
+   * "What's included", "Warranty", "Parts brands stocked". Hidden while empty.
+   */
+  facts?: { label: string; value: string }[];
 }
 
 export interface GalleryImage {

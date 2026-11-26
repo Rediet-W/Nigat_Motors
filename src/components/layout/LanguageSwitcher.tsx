@@ -1,6 +1,6 @@
 "use client";
 
-import { LOCALE_NAMES, LOCALES, localizePath } from "@/i18n/config";
+import { LOCALE_NAMES, LOCALES, localizePath, splitLocale } from "@/i18n/config";
 import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
 import { ActivePath } from "./ActivePath";
@@ -33,6 +33,14 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
                   {index > 0 && <span aria-hidden className="mx-2.5 h-3.5 w-px bg-current opacity-30" />}
                   <a
                     href={localizePath(lang, pathname ?? "/")}
+                    onClick={(event) => {
+                      // Resolve from the address bar at click time, so the visitor
+                      // always lands on the same page (and section) in the other language.
+                      if (current || event.metaKey || event.ctrlKey || event.shiftKey) return;
+                      event.preventDefault();
+                      const { path } = splitLocale(window.location.pathname);
+                      window.location.assign(localizePath(lang, path) + window.location.search);
+                    }}
                     hrefLang={lang}
                     lang={lang}
                     aria-label={LOCALE_NAMES[lang].long}

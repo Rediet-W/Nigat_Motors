@@ -3,9 +3,11 @@
  * calls to action stay fixed while the backdrop rotates.
  *
  * Video: Mixkit #52427 (Mixkit Stock Video Free License). Images: Unsplash.
- * PLACEHOLDER: replace with NF Car Importer' own footage when available.
+ * PLACEHOLDER: replace with a short loop of NF Car Importer's real vehicles
+ * (showroom, arrival at port or yard, customer handover) when supplied.
  */
 export interface HeroSlide {
+  /** Short description of the slide (also its alt text). */
   label: string;
   image: string;
   /** Optional looping video; `image` is its poster and reduced-motion fallback. */
@@ -14,13 +16,13 @@ export interface HeroSlide {
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    label: "On the road",
+    label: "Vehicle driving on the open road",
     image: "/images/hero-home.jpg",
     video: "/videos/hero-drive.mp4",
   },
-  { label: "The range", image: "/images/hero-vehicles.jpg" },
-  { label: "Servicing", image: "/images/hero-services.jpg" },
-  { label: "Every journey", image: "/images/hero-about.jpg" },
+  { label: "New vehicle on display", image: "/images/hero-vehicles.jpg" },
+  { label: "Vehicle in the workshop for servicing", image: "/images/hero-services.jpg" },
+  { label: "Modern vehicle interior", image: "/images/hero-about.jpg" },
 ];
 
 /** Time each slide stays on screen, in milliseconds. */

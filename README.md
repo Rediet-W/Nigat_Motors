@@ -107,8 +107,7 @@ values below are still placeholders and must be replaced before launch:
 | Sector website URLs | `src/constants/nigat-group.ts` (`SECTOR_URLS`); env vars `NEXT_PUBLIC_CONSTRUCTION_URL`, `NEXT_PUBLIC_MOTORS_URL`, `NEXT_PUBLIC_EXPORTS_URL` override them | `https://*.nigat.example`            |
 | Sector descriptions | `src/constants/nigat-group.ts` (`SECTORS`)                                                                                                                 | One-line summaries for each sector   |
 | Logo                | `src/components/ui/Logo.tsx`, `src/app/icon.svg`                                                                                                           | Copper "N" mark + wordmark           |
-| Production URL      | `NEXT_PUBLIC_SITE_URL` env var                                                                                                                             | `http://localhost:3000`              |
-| Vehicle categories  | `src/features/vehicles/data/vehicle-categories.ts`                                                                                                         | 6 general categories (not inventory) |
+| Production URL      | `NEXT_PUBLIC_SITE_URL` env var (optional override)                                                                                                         | `https://nigat-motors.vercel.app`    |
 | About / brand copy  | `src/features/about/data/about.ts`                                                                                                                         | General copy, no figures or dates    |
 | FAQ answers         | `src/features/faqs/data/faqs.ts`                                                                                                                           | Process-only answers, no policies    |
 
@@ -134,12 +133,34 @@ brands carried or prices.
 
 ## Enquiry form
 
-No backend or email service was specified. The form (`src/features/contact`) validates input on the
-client, then opens the visitor's email app with a prefilled `mailto:` message to `CONTACT.email`.
-To use a real integration, replace `buildEnquiryMailto` in `features/contact/lib/enquiry.ts` with
-an API route or Server Action.
+The form (`src/features/contact`) validates in the browser, then posts JSON to `/api/enquiry`
+(`src/app/api/enquiry/route.ts`), which validates again and forwards the enquiry to every
+configured channel. Set at least one in Vercel → Settings → Environment Variables (see `.env.example`):
 
+| Channel        | Variables                                                     |
+| -------------- | ------------------------------------------------------------- |
+| Telegram group | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`                      |
+| Email (Resend) | `RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, optional `ENQUIRY_FROM_EMAIL` |
+| Form service   | `ENQUIRY_WEBHOOK_URL` (Formspree, Google Apps Script, CRM…)   |
+
+With none set, the endpoint returns 503 and the form shows the phone number plus Telegram /
+WhatsApp buttons instead, so no enquiry is silently lost. A hidden honeypot field filters bots.
+The full form appears on the Contact page only; every other page ends with the slim `CtaBand`.
 Vehicle and service pages link to `/contact?interest=<slug>#enquiry`, which preselects the topic.
+
+## Content still needed (hidden until filled)
+
+| Item | Where | Behaviour while empty |
+| --- | --- | --- |
+| Vehicle year, specs, price, availability, photos | `src/features/vehicles/data/vehicles.ts` | Specs hidden, "Price on request", "Ask for availability", branded placeholder image |
+| About timeline (milestones) | `src/features/about/data/about.ts` (`milestones`) | Timeline hidden |
+| Home proof-point figures | `src/features/home/data/proof-points.ts` (`figure`) | Figures hidden |
+| Buyer FAQ answers | `src/features/faqs/data/faqs.ts` (`answer: null`) | Question hidden |
+| Service facts (included, timeline, warranty, brands) | `src/features/services/data/services.ts` (`facts`) | Sheet hidden |
+| Showroom landmark, map embed, reply time, phone labels, email | `src/constants/site.ts` (`CONFIRM` comments) | Landmark/map hidden |
+| Telegram / WhatsApp handles | `src/constants/site.ts` (`MESSAGING`) | Default to the main phone number |
+| Gallery | `src/constants/features.ts` (`SHOW_GALLERY`) | Page hidden (404, not in menu/sitemap) |
+| Hero videos | `src/features/home/data/hero-slides.ts`, `SERVICES_HERO_VIDEO` in services page | Stock clip / photo |
 
 ## Images
 
